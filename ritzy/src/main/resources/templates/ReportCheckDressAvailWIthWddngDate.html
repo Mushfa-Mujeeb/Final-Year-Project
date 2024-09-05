@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+
+</head>
+
+<head>
+
+    <!-- link dress js file -->
+    <script src="\Controllerjs\reportdressavailcheckwithwddndate.js"></script>
+
+
+
+</head>
+
+<body class="body-scrollbar-customization">
+
+    <!-- Topnavbar -->
+    <nav th:replace="~{ topnavbar :: topnavbarFragment }"></nav>
+
+    <div class="container mt-5">
+        <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+            <div class="card-body">
+                <!-- nav -->
+                <nav>
+                    <div class="nav nav-pills nav-justified">
+                        <a href="#nav-table" id="tablDress" data-bs-toggle="tab" role="tab"
+                            class="nav-link  active">Dress Availability Report
+                        </a>
+
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+
+
+                    <!-- tab table start -->
+                    <div class="tab-pane show active" id="nav-table">
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">
+
+                                    <!-- report actions Start -->
+                                    <div class="row justify-content-between mt-4">
+                                        <div class="row col-10 ">
+                                            <!-- Dress Style Start-->
+                                             <div class="row">
+                                                <label for="weddingDate" class="col-2 col-form-label " style="color: aliceblue;">
+                                                    Enter Wedding Date : <span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-4">
+                                                    <!-- <select id="dressStyle" class="gradient-border shadow-sm form-control" style="height:45px">
+                                                        <option value="" disabled selected>Select Dress Style
+                                                        </option>
+                                                        <option value="">Sri Lankan</option>
+                                                        <option value="">Indian</option>
+                                                        <option value="">Western</option>
+                                                    </select> -->
+                                                    
+                                                        <input type="date" onkeydown="return false" ;
+                                                        onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', '', ''); generateReport();"
+                                                        placeholder="Enter Wedding Date"
+                                                        class="form-control shadow-sm gradient-border" id="weddingDate" style="height:45px"
+                                                        required>
+                                                </div>
+                                                
+                                            <button type="button" class="btn btn-back col-2" onclick="generateReport()" style="height:45px">
+                                                Generate
+                                            </button>
+                                             </div>
+                                            
+                                            <!-- Dress Style End-->
+
+                                            
+                                        </div>
+
+                                        <div class="col-2 text-end p-0">
+                                            <button type="button" class="btn btn-view col-10">
+                                                Print
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- report actions End -->
+
+                                    <div class="border-primary mt-4">
+                                        <!-- table start -->
+                                        <table class="table" id="tableDressReport">
+                                            <thead class="table-header text-center">
+                                                <tr>
+                                                    <th>Dress ID</th> <!-- #,No,Index -->
+                                                    <th>Dress Code</th>
+                                                    <th>Dress image</th>
+                                                    <th>Dress Name</th>
+                                                    <th>Rental Price</th>
+                                                   
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="table-body text-start">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td><img src="" alt=""></td>
+                                                    <td class="text-start">Lehenga</td>
+                                                    <td class="text-start">21000.00</td>
+                                                    <td>21000.00</td>
+                                                    <td> </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab table end -->
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+</body>
+
+</html>

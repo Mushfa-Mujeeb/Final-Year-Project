@@ -1,0 +1,71 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.5'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'lk'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	//Spring Boot DevTools is a set of tools that make develpment with spring boot easier by providing features like automatic app'n restart,among others
+	////////////// provides fast application restart, LiveReload and configuration for enhanced development experience - original description from SB dependancies
+	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	//security depenancies
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	implementation 'org.springframework.boot:spring-boot-starter-security:3.2.2'
+	
+		
+	//This dependency includes everything you need to set up JPA(java persistence API) and interact with a relational DB using Spring Data JPA
+	////////////// Persist data in SQL stores with java persistence API using Spring Data Hibernate - original description from SB dependancies
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	//Thymeleaf is a templating engine for ending HTML templates in a springboot application
+	////////////// A modern server-side java template engine for both web and standalone environment. Allow HTML to be correctly displayed in browser ans as static prototypes. - original description from SB dependancies
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	//for backend validation through entity class - sir's comment
+	//This starter includes the necessary libraries for adding valiation support to SB app'n
+	////////////// Bean Validation wiht Hibernate validator - original description from SB dependancies
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//This starter includes all the components required to build a web app'n with spring boot, including spring MVC
+	////////////// build web, including RESTful, application using Spring MVC. Uses Apache Tomcat as the default embedded container. - original description from SB dependancies
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	
+	// implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+	//Lambok is a library that simplifies the writing of java code by generating getters, setters and other boilerplate code automtically - It's used during development but is not included in the final runtime
+	////////////// Java annotation library which helps to reduce boilerplate code. - original description from SB dependancies
+	compileOnly 'org.projectlombok:lombok'
+
+	
+	//MySQL and Java connector
+	////////////// MySQL JDBC driver,  which is required to connect your Spring Boot app'n to a MySQL database. - original description from SB dependancies
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

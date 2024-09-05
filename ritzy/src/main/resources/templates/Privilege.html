@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+</head>
+
+<head>
+
+    <!-- link privilege js file -->
+    <script src="\Controllerjs\privilege.js"></script>
+
+</head>
+
+<body class="body-scrollbar-customization">
+
+    <!-- TOpnavbar -->
+    <nav th:replace="~{ topnavbar :: topnavbarFragment }"></nav>
+
+    <div class="container mt-5">
+        <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+            <div class="card-body">
+                <!-- nav -->
+                <nav>
+                    <div class="nav nav-pills nav-justified">
+                        <a href="#nav-table" id="Privtable" data-bs-toggle="tab" role="tab"
+                            class="nav-link  active">Table
+                        </a>
+                        <a href="#nav-form" id="PrivForm" data-bs-toggle="tab" role="tab" class="nav-link">Form
+                        </a>
+
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+
+
+                    <!-- tab table start -->
+                    <div class="tab-pane show active" id="nav-table">
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">
+
+                                    <div class="border-primary">
+                                        <!-- table start -->
+                                        <table class="table" id="tablePrivilege">
+
+                                            <thead class="table-header text-center">
+                                                <th>#</th> <!-- #,No,Index -->
+                                                <th>Role</th>
+                                                <th>Module</th>
+                                                <th>Select Privilege</th>
+                                                <th>Insert Privilege</th>
+                                                <th>Update Privilege</th>
+                                                <th>Delete Privilege</th>
+                                                <th>Modify</th>
+                                            </thead>
+
+                                            <tbody class="table-body text-center">
+                                                <tr>
+                                                    <!-- <td>1</td>
+                                                        <td>Wardathul Jannah</td>
+                                                        <td>Jannah</td>
+                                                        <td>aswjannah@gmail.com</td>
+                                                        <td>Manager</td>
+                                                        <td>Active</td>                  -->
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab table end -->
+
+                    <!-- tab form start -->
+                    <div class="tab-pane" id="nav-form">
+                        <div class="m-3">
+                            <!-- form area start -->
+                            <div class="row mt-2">
+                                <div class="mt-3">
+                                    <!-- form start -->
+                                    <form id="formPrivilege" class="formBody" onsubmit="return false">
+                                        <!-- Form Header Start -->
+                                        <div class="row">
+                                            <div class="col-6 pt-4">
+                                                <h1>Privilege Form</h1>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- Form Header Start -->
+
+
+                                        <!-- Role Start-->
+                                        <div class="row mt-1">
+                                            <label for="SelectRole" class="col-2 col-form-label ">
+                                                Role : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select class="form-select shadow-sm gradient-border" required
+                                                    id="SelectRole"
+                                                    onchange="selectDValidator(this,'','privilege','role_id'); generateModuleList()">
+                                                    <option value="" disabled>Select Role</option>
+                                                    <option value="">Admin</option>
+                                                    <option value="">Cashier</option>
+                                                    <option value="">Manager</option>
+                                                    <option value="">Store-Manager</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Role End-->
+
+                                        <!-- Module Start -->
+
+                                        <div class="row mt-3">
+                                            <label for="SelectModule" class="col-2 col-form-label ">
+                                                Module : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select class="form-select shadow-sm gradient-border" required
+                                                    id="SelectModule"
+                                                    onchange="selectDValidator(this,'','privilege','module_id');">
+                                                    <option value="" disabled>Select Module</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Module End -->
+
+                                        <!-- Select start -->
+                                        <div class="row mt-3">
+                                            <label for="priv_select" class="col-2 col-form-label ">
+                                                Select : <span class="text-danger"> * </span>
+                                            </label>
+
+                                            <div class="col-10 checkbx-customization" id="privselect">
+                                                <div style="justify-content: space-between; align-items: center; display: inline-flex"
+                                                    class="form-control shadow-sm gradient-border">
+                                                    <label id="labelSelectPriv" for="priv_select"
+                                                        class="checkbx-text-customization fw-bold">
+                                                        Select Privilege Not Granted
+                                                    </label>
+                                                    <input class="col-1 form-check-input" type="checkbox"
+                                                        id="priv_select"
+                                                        onchange="
+                                                        // if(this.checked){
+                                                        //     labelSelectPriv.innerText = 'Select Privilege Granted';
+                                                        // }else{
+                                                        //     labelSelectPriv.innerText = 'Select Privilege Not Granted';
+                                                        // }; 
+                                                        ckeckBoxValidator(this,'','privilege','select_privilege',true,false,labelSelectPriv,'Select Privilege Granted','Select Privilege Not Granted')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Select end -->
+
+                                        <!-- Insert start -->
+                                        <div class="row mt-3">
+                                            <label for="priv_insert" class="col-2 col-form-label ">
+                                                Insert : <span class="text-danger"> * </span>
+                                            </label>
+
+                                            <div class="col-10 checkbx-customization" id="privinsert">
+                                                <div style="justify-content: space-between; align-items: center; display: inline-flex"
+                                                    class="form-control shadow-sm gradient-border">
+                                                    <label id="labelInsertPriv" for="priv_insert"
+                                                        class="checkbx-text-customization fw-bold">
+                                                        Insert Privilege Not Granted
+                                                    </label>
+                                                    <input class="col-1 form-check-input" type="checkbox"
+                                                        id="priv_insert"
+                                                        onchange="
+                                                        // if(this.checked){
+                                                        //     labelInsertPriv.innerText = 'Insert Privilege Granted';
+                                                        // }else{
+                                                        //     labelInsertPriv.innerText = 'Insert Privilege Not Granted';
+                                                        // }; 
+                                                        ckeckBoxValidator(this,'','privilege','insert_privilege',true,false,labelInsertPriv,'Insert Privilege Granted','Insert Privilege Not Granted')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Insert end -->
+
+                                        <!-- Update start -->
+                                        <div class="row mt-3">
+                                            <label for="priv_update" class="col-2 col-form-label ">
+                                                Update : <span class="text-danger"> * </span>
+                                            </label>
+
+                                            <div class="col-10 checkbx-customization" id="privupdate">
+                                                <div style="justify-content: space-between; align-items: center; display: inline-flex"
+                                                    class="form-control shadow-sm gradient-border">
+                                                    <label id="labelUpdatePriv" for="priv_update"
+                                                        class="checkbx-text-customization fw-bold">
+                                                        Update Privilege Not Granted
+                                                    </label>
+                                                    <input class="col-1 form-check-input" type="checkbox"
+                                                        id="priv_update"
+                                                        onchange="
+                                                        // if(this.checked){
+                                                        //     labelUpdatePriv.innerText = 'Update Privilege Granted';
+                                                        // }else{
+                                                        //     labelUpdatePriv.innerText = 'Update Privilege Not Granted';
+                                                        // }; 
+                                                        ckeckBoxValidator(this,'','privilege','update_privilege',true,false,labelUpdatePriv,'Update Privilege Granted','Update Privilege Not Granted')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Update end -->
+
+                                        <!-- Delete start -->
+                                        <div class="row mt-3">
+                                            <label for="priv_delete" class="col-2 col-form-label ">
+                                                Delete : <span class="text-danger"> * </span>
+                                            </label>
+
+                                            <div class="col-10 checkbx-customization" id="privdelete">
+                                                <div style="justify-content: space-between; align-items: center; display: inline-flex"
+                                                    class="form-control shadow-sm gradient-border">
+                                                    <label id="labelDeletePriv" for="priv_delete"
+                                                        class="checkbx-text-customization fw-bold">
+                                                        Delete Privilege Not Granted
+                                                    </label>
+                                                    <input class="col-1 form-check-input" type="checkbox"
+                                                        id="priv_delete"
+                                                        onchange="
+                                                        // if(this.checked){
+                                                        //     labelDeletePriv.innerText = 'Delete Privilege Granted';
+                                                        // }else{
+                                                        //     labelDeletePriv.innerText = 'Delete Privilege Not Granted';
+                                                        // } ; 
+                                                        ckeckBoxValidator(this,'','privilege','delete_privilege',true,false,labelDeletePriv,'Delete Privilege Granted','Delete Privilege Not Granted')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Delete end -->
+
+                                        <!-- Buttons Start -->
+                                        <div class="row justify-content-between mt-4">
+                                            <div class="col-6">
+                                                <button type="button"
+                                                    onclick="formPrivilege.reset(); refreshPrivilegeForm();  $('#Privtable').tab('show')"
+                                                    class="btn btn-back col-5">Back to Privilege Table</button>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <button id="btnClearPrivilege" type="button"
+                                                    onclick="formPrivilege.reset(); refreshPrivilegeForm();"
+                                                    class="btn btn-cancel col-3">Clear</button>
+                                                <button id="btnEditPrivilege" type="button" onclick="editPrivilege()"
+                                                    class="btn btn-edit col-3">Edit</button>
+                                                <button id="btnSubmitPrivilege" type="submit"
+                                                    onclick="buttondPrivilegeAdd()"
+                                                    class="btn btn-success col-3">Save</button>
+                                            </div>
+                                        </div>
+                                        <!-- Buttons End -->
+
+                                    </form>
+                                    <!-- form end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab form end -->
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+</body>
+
+</html>

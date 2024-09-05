@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+
+</head>
+
+<head>
+
+</head>
+
+<body class="body-scrollbar-customization">
+    <!-- Main content container  -->
+    <div class="container-fluid">
+        <!-- Centered row with vertical alignment -->
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <!-- column for card -->
+            <div class="col-10 text-center">
+                <!-- card with glass morph effect -->
+                <div class="card glass-morph-card">
+                    <div class="card-body container mt-5 mb-5">
+                        <div class="row text-center">
+                            <div class="col-1 p-0"></div>
+                            <div class="col-7 text-start p-5">
+                                <img src="/image/page_not_found.svg" alt="Error"
+                                    style="width: 800px;">
+                            </div>
+                            <div class="col-3 p-0 text-start">
+                                <p class="text-start m-0" style="color: #ffe9b2; padding-top: 120px; font-size: 80px;font-style: italic;">Oooppss !!!</p>
+                                <p class="text-start" style="color: #f7e6bdec; font-size: 30px;">Looks like something went wrong.
+                                </p>
+                                <a href="/dashboard">
+                                    <button type="button" class="primary-button mt-5">
+                                        Back to Home Page
+                                    </button>
+                                </a>
+                            </div>
+                            
+                            <div class="col-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

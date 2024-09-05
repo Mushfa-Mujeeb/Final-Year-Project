@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head  th:replace="~{ commonHtmlHead :: headFragment }">
+    
+</head>
+<head>
+        
+    <!-- link employee js file -->
+    <script src="\Controllerjs\employee.js"></script>
+
+</head>
+
+
+<body class="body-scrollbar-customization">
+
+     <!-- TOpnavbar -->
+     <nav th:replace="~{ topnavbar :: topnavbarFragment }"></nav>
+
+    <div class="container mt-5">
+        <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+            <div class="card-body">
+                <!-- nav -->
+                <nav>
+                    <div class="nav nav-pills nav-justified">
+                        <a
+                        href="#nav-table"
+                        id="tableEmp"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        class="nav-link  active"
+                        >Table
+                    </a>
+                    <a
+                        href="#nav-form"
+                        id="empForm"
+                        data-bs-toggle="tab"
+                        role="tab"
+                        class="nav-link"
+                        >Form
+                    </a>
+                    
+                    </div>
+                </nav>
+                
+                <div class="tab-content">
+                    
+
+                    <!-- tab table start -->
+                    <div class="tab-pane show active" id="nav-table" >
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">                                    
+                                    <div class="border-primary">
+                                        <!-- table start -->
+                                        <table class="table" id="tableEmployee">
+                                            <thead class="table-header text-center">
+                                                <tr>
+                                                    <th>Employee ID</th> <!-- #,No,Index -->
+                                                    <th style="width: 150px;">Employee Name</th>
+                                                    <th style="width: 200px;">Mail Address</th>
+                                                    <th style="width: 140px;">Address</th>
+                                                    <th style="width: 140px;">Phone Number</th>
+                                                    <th style="width: 180px;">Designation</th>
+                                                    <th style="width: 160px;">Employee Status</th>
+                                                    <th style="width: 580px;">Action</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="table-body text-center">
+                                                <tr>
+                                                    <!-- <td>1</td>
+                                                    <td>Mushfa Mujeeb</td>
+                                                    <td>mushfa@gmail.com</td>
+                                                    <td>Colombo</td>
+                                                    <td>0777521845</td>
+                                                    <td>20-05-2023</td>
+                                                    <td>Working</td>
+                                                    <td></td> -->
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+                                    
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab table end -->
+
+                    <!-- tab form start -->
+                    <div class="tab-pane" id="nav-form">
+                        <div class="m-3">
+                            <!-- form area start -->
+                            <div class="row mt-2">                                
+                                <div class="mt-3">
+                                    <!-- form start -->
+                                    <form id="employeeForm" class="formBody" onsubmit="return false">
+                                        <!-- Form Header Start -->
+                                        <div class="row">
+                                            <div class="col-6 pt-4">
+                                                <h1>Employee Form</h1>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- Form Header end -->
+
+                                        <!-- * required mark -->
+                                        <div class="row">
+                                            <div class="col-12 text-end">
+                                                <span class="fw-bold"><span class="text-danger">
+                                            </div>
+                                        </div>
+
+                                        <!-- Employee First Name Start-->
+                                        <div class="row mt-1">
+                                            <label for="empFName" class="col-2 col-form-label ">
+                                                First Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','employee','emp_first_name');" placeholder="Enter First Name" class="form-control shadow-sm gradient-border"
+                                                    id="empFName" required>
+                                            </div>
+                                        </div>
+                                        <!-- Employee First Name End-->
+
+                                        <!-- Employee Last Name Start-->
+                                        <div class="row mt-1">
+                                            <label for="empLName" class="col-2 col-form-label ">
+                                                Last Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','employee','emp_last_name'); " placeholder="Enter Last Name" class="form-control shadow-sm gradient-border"
+                                                    id="empLName" required>
+                                            </div>
+                                        </div>
+                                        <!-- Employee Last Name End-->
+
+                                        <!-- Email Id Start -->
+                                        <div class="row mt-1">
+                                            <label for="emailId" class="col-2 col-form-label ">
+                                                Email ID : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="email" onkeyup="textValidator(this,'^[A-Za-z0-9\\-\\_]{6,20}[@][a-z]{5,10}[.][a-z]{2,3}$','employee','email')" placeholder="Enter Email Id" class="form-control shadow-sm gradient-border"
+                                                    id="emailId" required>
+                                            </div>
+                                        </div>
+                                        <!-- Email Id End -->
+
+                                        <!-- Address Start -->
+                                        <div class="row mt-1">
+                                            <label for="empAddress" class="col-2 col-form-label ">
+                                                Address : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"  onkeyup="textValidator(this,'^([A-Za-z0-9\\s\\/\\-]{1,20}[\\,][\\s])+([A-Z][a-z]{1,20}[.])$','employee','address')" placeholder="Enter Address" class="form-control shadow-sm gradient-border"
+                                                    id="empAddress" required>
+                                            </div>
+                                        </div>
+                                        <!-- Address End -->
+
+                                        <!-- Phone Number Start -->
+                                        <div class="row mt-1">
+                                            <label for="empPhoneNumber" class="col-2 col-form-label ">
+                                                Phone Number : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="tel" placeholder="Enter Phone Number" onkeyup="textValidator(this,'^[0][7][01245678][0-9]{7}$','employee', 'phone')" class="form-control shadow-sm gradient-border"
+                                                    id="empPhoneNumber" required>
+                                            </div>
+                                        </div>
+                                        <!-- Phone Number End -->
+
+                                        <!-- Employee Status Start -->
+                                        <div class="row mt-1">
+                                            <label for="empStatus" class="col-2 col-form-label">
+                                                Employee Status : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="empStatus" class="form-select shadow-sm gradient-border" onchange="selectDValidator(this,'','employee','employeestatus_id')" required>
+                                                    <option value="Working">Working</option>
+                                                    <option value="Resigned">Resigned</option>
+                                                    <option value="Deleted">Deleted</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Employee Status End -->
+                                        
+                                        <!-- Employee Designation Start -->
+                                        <div class="row mt-3">
+                                            <label for="empDesignation" class="col-2 col-form-label">
+                                                Designation : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="empDesignation" class="form-select shadow-sm gradient-border" onchange="selectDValidator(this,'','employee','designation_id')" required>
+                                                    <option value="">Manager</option>
+                                                    <option value="">Cashier</option>
+                                                    <option value="">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Employee Designation End -->
+
+                                         <!-- Note Start -->
+                                        <div class="row mt-3">
+                                            <label for="textNote" class="col-2 col-form-label ">
+                                                Note : 
+                                            </label>
+                                            <div class="col-10">
+                                                <textarea  placeholder="Enter Note" onkeyup="textValidator(this,'^.*$','employee','note')" rows="1" id="textNote" class="form-control shadow-sm gradient-border"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Note End -->
+
+                                        <!-- Buttons Start -->            
+                                        <div class="row justify-content-between mt-3">
+                                            <div class="col-6">
+                                                <button type="button" onclick="employeeForm.reset(); refreshEmployeeForm();  $('#tableEmp').tab('show')"  class="btn btn-back col-5">Back to Employee Table</button>
+                                            </div>
+                                            <div class="col-6 text-end">                                                
+                                                <button type="button" id="btnClearEmployee" onclick="employeeForm.reset(); refreshEmployeeForm();" class="btn btn-cancel col-3">Clear</button>
+                                                <button type="button" id="btnEditEmployee" onclick="editEmployee(); employeeForm.reset(); $('#tableEmp').tab('show')" class="btn btn-edit col-3">Edit</button>                                                
+                                                <button type="submit" id="btnSubmitEmployee" onclick="submitEmployee()" class="btn btn-success col-3">Save</button>
+                                            </div>
+                                        </div>              
+                                        <!-- Buttons End -->
+                                    </form>
+                                    <!-- form end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab form end -->
+
+                </div>
+                
+
+                
+            </div>
+        </div>
+
+
+
+</body>
+
+
+
+
+</html>

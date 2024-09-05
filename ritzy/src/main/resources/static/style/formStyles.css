@@ -1,0 +1,156 @@
+/* Add your styles for the customer form here */
+
+
+::placeholder {
+    color: #575048;
+}
+
+.formBody {
+    background-color: #FFFDE2;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    border: 1px solid #e0db90;
+    border-radius: 24px;
+}
+
+.gradient-border {
+    border: 2px solid;
+    background: linear-gradient(#DDCAA1, #DDCAA1) padding-box,
+        linear-gradient(120deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B) border-box;
+    border: 2px solid transparent;
+    border-radius: 5px;
+
+}
+
+.Logo-image {
+    max-width: 40%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #0C0B0A;
+}
+
+
+/* changing the Color which had defaultly */
+.form-control:disabled {
+    background-color: white;
+    opacity: 1;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+
+}
+
+.btn-back {
+    border-radius: 5px;
+    box-shadow: -3.296px 5.273px 2.637px 0px rgba(246, 239, 239, 0.25) inset, 3.296px -4.614px 3.955px 0px rgba(0, 0, 0, 0.25) inset;
+    background-color: #88673C;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: #b08b5a;
+
+}
+
+.btn-cancel {
+    border-radius: 5px;
+    background: #BD3E5D;
+    box-shadow: -3.296px 5.273px 2.637px 0px rgba(246, 239, 239, 0.25) inset, 3.296px -4.614px 3.955px 0px rgba(0, 0, 0, 0.25) inset;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #af536a;
+
+}
+
+.btn-success {
+    border-radius: 5px;
+    background: #249D29;
+    box-shadow: -3.296px 5.273px 2.637px 0px rgba(246, 239, 239, 0.25) inset, 3.296px -4.614px 3.955px 0px rgba(0, 0, 0, 0.25) inset;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background-color: #48924a;
+
+}
+
+.btn-edit {
+    border-radius: 5px;
+    background: #3873AA;
+    box-shadow: -3.296px 5.273px 2.637px 0px rgba(246, 239, 239, 0.25) inset, 3.296px -4.614px 3.955px 0px rgba(0, 0, 0, 0.25) inset;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background-color: #7795b1;
+
+}
+
+input[type="checkbox" i] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 5px;
+
+}
+
+.checkbx-customization {
+    flex: 1 1 0;
+    align-self: stretch;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkbx-text-customization {
+    color: #575048;
+    font-size: 16px;
+    word-wrap: break-word
+}
+
+.glass-morph-innerform {
+    border: 2px solid;
+    background: #ddcaa142;
+    backdrop-filter: blur(15px);
+    border-image: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B);
+    border-style: solid;
+    border-image-slice: 1;
+}

@@ -1,0 +1,351 @@
+<!-- navigation bar with dark background -->
+<nav class="navbar background-defaultcolor fixed-top" th:fragment="topnavbarFragment">
+  <div class="container-fluid row">
+
+    <!-- brand logo with link to home page -->
+    <div class="col-2">
+      <a class="navbar-brand" href="/dashboard">
+        <img src="\image\Logo_NowhiteBG.svg" width="250" alt="Brand Logo" />
+      </a>
+    </div>
+
+    <!-- Title area Start -->
+    <div class="text-center col-8">
+      <h2 class="h2 title_div" th:text="${Heading}">
+        Home
+      </h2>
+    </div>
+    <!-- Title area End -->
+
+
+    <div class="dropdown col-1 text-end">
+      <!-- display logged username start -->
+      <a class="btn btn-secondary dropdown-toggle loggedUser" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false" style="color: #cfcfd6; font-size: 21px;  width: 95%;" href="#"
+        th:text="${loggedusername}">
+      </a>
+      <!-- display logged username start -->
+
+      <!-- Dropdown menu start -->
+      <ul class="dropdown-menu">
+        <!-- settings list start -->
+        <li>
+          <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#openoffcanvassSettings"
+            aria-controls="offcanvasBottom" onclick="refreshProfileEditForm()">
+            <i class="fa-solid fa-gear" style="color: #1c1c1d;"></i>
+            Settings
+          </a>
+        </li>
+        <!-- settings list end -->
+
+        <!-- Sign Out list start -->
+        <li>
+          <a class="dropdown-item" href="#" onclick="btnSignOut()">
+            <i class="fas fa-sign-out" style="color: #1c1c1d;"></i>
+            Sign Out
+          </a>
+        </li>
+        <!-- Sign Out list end -->
+      </ul>
+      <!-- Dropdown menu end -->
+    </div>
+
+
+    <!-- open settinnd offcanvas -->
+    <div class="offcanvas offcanvas-bottom " tabindex="-1" id="openoffcanvassSettings"
+      aria-labelledby="offcanvasBottomLabel" data-bs-backdrop="static" style="width: 1400px;">
+      <div class="offcanvas-header mt-2" style="justify-content: flex-end; padding-right: 30px;">
+        <button type="button" class="btn-close col-1 text-end" data-bs-dismiss="offcanvas" aria-label="Close">
+        </button>
+      </div>
+      <div class="offcanvas-body ">
+        <!-- form start -->
+        <!-- 207 line made on submit false because to stop form submission auto refresh  -->
+        <form id="FormUserSettings" class="formBody" onsubmit="return false" style="border: solid 1px transparent;">
+          <!-- Form Header Start -->
+          <div class="row">
+            <div class="col-6 pt-4">
+              <h1 id="staticBackdropLabel">User Settings</h1>
+            </div>
+            <div class="col-6 text-end">
+              <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+            </div>
+
+            <hr>
+          </div>
+          <!-- Form Header Start -->
+
+          <!-- User Name Start-->
+          <div class="row mt-3">
+            <label for="userNameSetting" class="col-2 col-form-label ">
+              User Name : <span class="text-danger"> * </span>
+            </label>
+            <div class="col-10">
+              <input type="text" onkeyup="textValidator(this,'^[a-zA-Z0-9]{5,16}$','loggedUser','username')"
+                placeholder="Enter User Name" class="form-control shadow-sm gradient-border" id="userNameSetting"
+                required>
+            </div>
+          </div>
+          <!-- User Name End-->
+
+          <!-- Password Start-->
+          <div class="row mt-1">
+            <label for="textPasswordSetting" class="col-2 col-form-label ">
+              Password : <span class="text-danger"> * </span>
+            </label>
+            <div class="col-10">
+              <input type="password" placeholder="Enter Password"
+                onkeyup="textValidator(this,'^[a-zA-Z0-9]{5,16}$','loggedUser','password')"
+                class="form-control shadow-sm gradient-border" id="textPasswordSetting" required>
+            </div>
+          </div>
+          <!-- Password End-->
+
+          <!-- Re-Enter Password Start-->
+          <div class="row mt-1">
+            <label for="rePasswordSetting" class="col-2 col-form-label ">
+              Re-Enter Password : <span class="text-danger"> * </span>
+            </label>
+            <div class="col-10">
+              <input type="password" placeholder="Re-Enter Password" onkeyup="passwordRetypeValidator()"
+                class="form-control shadow-sm gradient-border" id="rePasswordSetting" required>
+            </div>
+          </div>
+          <!-- Re-Enter Password End-->
+
+          <!-- Email Id Start -->
+          <div class="row mt-1">
+            <label for="emailIdSetting" class="col-2 col-form-label ">
+              Email ID : <span class="text-danger"> * </span>
+            </label>
+            <div class="col-10">
+              <input type="email" placeholder="Enter Email Id"
+                onkeyup="textValidator(this,'^[A-Za-z0-9\\-\\_]{6,20}[@][a-z]{5,10}[.][a-z]{2,3}$','loggedUser','email'); generateEmail() "
+                class="form-control shadow-sm gradient-border" id="emailIdSetting" required>
+            </div>
+          </div>
+          <!-- Email Id End -->
+
+
+
+          <!-- Buttons Start -->
+          <div class="row justify-content-between mt-4">
+            <div class="col-6">
+
+            </div>
+            <div class="col-6 text-end">
+              <button id="btnSubmitUserSettings" type="submit"
+                onclick="buttonUserSettingsSumbit(); "
+                class="btn btn-success col-3">Save</button>
+            </div>
+          </div>
+          <!-- Buttons End -->
+
+
+
+
+        </form>
+        <!-- form end -->
+      </div>
+    </div>
+
+    <!-- Button for toggling the offcanvas menu -->
+    <div class="col-1 text-end">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+        aria-controls="offcanvasDarkNavbar">
+        <span class=" navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- offcanvas container for menu -->
+  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+    aria-labelledby="offcanvasDarkNavbarLabel">
+    <div class="offcanvas-header">
+
+      <!-- offcanvas header -->
+      <img class="offcanvas-title" id="offcanvasHeaderImage" src="\image\Logo_original_nobg.svg" width="120"
+        alt="Brand Logo" />
+
+      <!-- button to close offcanvas menu -->
+      <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <!-- body of the offcanvas menu -->
+    <div class="offcanvas-body">
+      <!-- list of navigation items -->
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 text-end">
+        <!-- induvidual navigation item : Home -->
+        <li class="nav-item">
+          <a class="nav-link nav-link.active" aria-current="page" href="/dashboard">Home</a>
+        </li>
+
+        <!-- Divider in the offcanvas -->
+        <hr class="gradient-Divider" />
+
+        <!-- induvidual navigation item : Administration -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            href="#">Administration</a>
+
+          <!-- dropdown Menu Content -->
+          <ul class="dropdown-menu dropdown-menu-dark text-end">
+            <!-- Dropdown items -->
+            <li><a class="dropdown-item" href="/employee">Employee Management</a></li>
+            <!-- Divider in the offcanvas -->
+            <li>
+              <hr class="gradient-Divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="/user">User Management</a>
+            </li><!-- Divider in the offcanvas -->
+            <li>
+              <hr class="gradient-Divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="/privilege">Privilege Management</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Divider in the offcanvas -->
+        <hr class="gradient-Divider" />
+
+        <!-- induvidual navigation item : Dress catalog -->
+        <li class="nav-item">
+          <a class="nav-link" href="/dress">Dress Catalog</a>
+        </li>
+
+        <!-- Divider in the offcanvas -->
+        <hr class="gradient-Divider" />
+
+        <!-- induvidual navigation item : Customer -->
+        <li class="nav-item">
+          <a class="nav-link" href="/customer">Customer Management</a>
+        </li>
+
+        <!-- Divider in the offcanvas -->
+        <hr class="gradient-Divider" />
+
+        <!-- induvidual navigation item : Reservation Management -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            href="#">Reservation Management</a>
+
+          <!-- dropdown Menu Content -->
+          <ul class="dropdown-menu dropdown-menu-dark text-end">
+            <!-- Dropdown items -->
+            <li>
+              <a class="dropdown-item" href="/reservation">Reservation Management</a>
+            </li>
+            <!-- Divider in the offcanvas -->
+            <li>
+              <hr class="gradient-Divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="/collectedperson">Dress Collected Management</a>
+            </li>
+            <!-- Divider in the offcanvas -->
+            <li>
+              <hr class="gradient-Divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="returendperson">Dress Returned Management</a>
+            </li>
+          </ul>
+        </li>
+
+
+        <!-- Divider in the offcanvas -->
+        <hr class="gradient-Divider" />
+
+        <!-- induvidual navigation item : Payment Management -->
+        <li class="nav-item">
+          <a class="nav-link" href="/payment">Payment Management</a>
+        </li>
+
+
+        <!-- Divider in the offcanvas -->
+        <hr class="gradient-Divider" />
+
+        <!-- induvidual navigation item : Designer Management -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            href="#">Designer Management</a>
+
+          <!-- dropdown Menu Content -->
+          <ul class="dropdown-menu dropdown-menu-dark text-end">
+            <!-- Dropdown items -->
+            <li>
+              <a class="dropdown-item" href="/designer">Designer Management</a>
+            </li>
+
+
+            <!-- Divider in the offcanvas -->
+            <li>
+              <hr class="gradient-Divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="/dresspuchasereq">Purchase Request Management</a>
+            </li>
+
+            <!-- Divider in the offcanvas -->
+            <li>
+              <hr class="gradient-Divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Designer Payment Management</a>
+            </li>
+
+          </ul>
+        </li>
+
+
+        
+
+        <!-- Divider in the offcanvas -->
+        <hr class="gradient-Divider" />
+
+        <!-- induvidual navigation item : Maintenance and Repair -->
+        <li class="nav-item">
+          <a class="nav-link" href="/maintenance">Maintenance and Repair</a>
+        </li>
+
+        <!-- Divider in the offcanvas -->
+        <hr class="gradient-Divider" />
+
+        <!-- induvidual navigation item : Report Management -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            href="#">Report Management</a>
+
+          <!-- dropdown Menu Content -->
+          <ul class="dropdown-menu dropdown-menu-dark text-end">
+            <!-- Dropdown items -->
+            <li>
+              <a class="dropdown-item" href="/dresspurchreqpendingreport">Purchase Request Report</a>
+            </li>
+
+
+            <!-- Divider in the offcanvas -->
+            <li>
+              <hr class="gradient-Divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="/dressreport">Dress Catalog Report</a>
+            </li>
+
+            <!-- Divider in the offcanvas -->
+            <li>
+              <hr class="gradient-Divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Report 3</a>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

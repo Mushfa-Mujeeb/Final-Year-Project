@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+
+</head>
+
+<head>
+
+    <!-- link reservation js file -->
+    <script src="/Controllerjs/reservation.js"></script>
+
+
+
+</head>
+
+<body class="body-scrollbar-customization">
+
+    <!-- TOpnavbar -->
+    <nav th:replace="~{ topnavbar :: topnavbarFragment }"></nav>
+
+    <div class="container mt-5">
+        <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+            <div class="card-body">
+                <!-- nav -->
+                <nav>
+                    <div class="nav nav-pills nav-justified">
+                        <a href="#nav-table" id="tableResv" data-bs-toggle="tab" role="tab" class="nav-link  active">
+                            Table
+                        </a>
+                        <a href="#nav-form" id="resvForm" data-bs-toggle="tab" role="tab" class="nav-link">
+                            Form
+                        </a>
+
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+
+
+                    <!-- tab table start -->
+                    <div class="tab-pane show active" id="nav-table">
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">
+
+                                    <div class="border-primary">
+                                        <!-- table start -->
+                                        <table class="table" id="tableReservation">
+                                            <thead class="table-header text-center">
+                                                <tr>
+                                                    <th style="width:50px">Reservation ID</th> <!-- #,No,Index -->
+                                                    <th style="width:120px">Customer Name</th>
+                                                    <th>Reserved Dress</th>
+                                                    <th>Reservation Date</th>
+                                                    <th style="width:180px">Reservation Status</th>
+                                                    <th style="width:290px">Action</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="table-body text-center">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mushfa Mujeeb</td>
+                                                    <td>Lehenga</td>
+                                                    <td>Pending</td>
+                                                    <td></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab table end -->
+
+                    <!-- tab form start -->
+                    <div class="tab-pane" id="nav-form">
+                        <div class="m-3">
+                            <!-- form area start -->
+                            <div class="row mt-2">
+                                <div class="mt-3">
+                                    <!-- form start -->
+                                    <form id="reservationForm" class="formBody" onsubmit="return false">
+                                        <!-- Form Header Start -->
+                                        <div class="row">
+                                            <div class="col-6 pt-4">
+                                                <h1>Reservation Form</h1>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- Form Header Start -->
+
+                                        <!-- * required mark -->
+                                        <div class="row">
+                                            <div class="col-12 text-end">
+                                                <span class="fw-bold"><span class="text-danger">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Customer Start-->
+                                        <!-- <div class="row mt-3 mb-4">
+                                            <label for="SelectCustomer" class="col-2 col-form-label ">
+                                                Customer : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="SelectCustomer"
+                                                    class="gradient-border shadow-sm form-control"
+                                                    onchange="selectDValidator(SelectCustomer,'','reservation','customer_id'); ">
+                                                    <option value="" disabled selected>Select Customer</option>
+                                                    <option value="">Ram</option>
+                                                </select>
+                                            </div>
+                                            
+                                        </div> -->
+                                        <!-- Customer End-->
+
+                                        <!-- Customer Start -->
+                                        <div class="row mt-3 mb-3">
+                                            <label for="SelectCustomer" class="col-2 col-form-label ">
+                                                Customer : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10 row" style="padding-right: 0px">
+                                                <div class="col-10 pt-1">
+                                                    <select id="SelectCustomer"
+                                                        class="gradient-border shadow-sm form-control"
+                                                        onchange="selectDValidator(SelectCustomer,'','reservation','customer_id'); ">
+                                                        <option value="" disabled selected>Select Customer</option>
+                                                        <option value="">Ram</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-2 text-end p-0">
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" id="btnAddNewCustomerResv"
+                                                        class="btn btn-back" data-bs-toggle="offcanvas"
+                                                        data-bs-target="#offcanvasAddCustomer"
+                                                        aria-controls="offcanvasBottom" style="width:100%"
+                                                        onclick="refreshCustomerForm();">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                        Add New Customer
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Customer End -->
+
+                                        <!-- Wedding Date Start -->
+                                        <div class="row mt-1">
+                                            <label for="weddingDate" class="col-2 col-form-label ">
+                                                Wedding Date : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="date" onkeydown="return false" ;
+                                                    onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'reservation', 'wedding_date'); generateStartEnd(); generateRentalEnd(); filterDresses();"
+                                                    placeholder="Enter Wedding Date"
+                                                    class="form-control shadow-sm gradient-border" id="weddingDate"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Wedding Date End -->
+
+                                        <!-- ####################################################################################### -->
+                                        <!-- inner form start -->
+                                        <div class="row glass-morph-innerform p-3 m-0"
+                                            style="display:flex;flex-wrap: wrap;justify-content: center;">
+                                            <div id="innerDressForm" class="col-10">
+                                                <!-- Dress Start-->
+                                                <div class="row mt-3">
+                                                    <label for="SelectDressRes" class="col-3 col-form-label ">
+                                                        Dress : <span class="text-danger"> * </span>
+                                                    </label>
+                                                    <div class="col-9">
+                                                        <select id="SelectDressRes"
+                                                            class="gradient-border shadow-sm form-control"
+                                                            onchange="selectDValidator(SelectDressRes,'','reserveDress','dress_id'); generateDressRentalPrice(); generateDepositAmout(); generatePreResevTotal(); ">
+                                                            <option value="" disabled selected>Select Dress</option>
+                                                            <option value="">Ram</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- Dress End-->
+
+                                                <!-- Price Start -->
+                                                <div class="row mt-3">
+                                                    <label for="dressRentPrice" class="col-3 col-form-label ">
+                                                        Dress Rental Price : <span class="text-danger"> * </span>
+                                                    </label>
+                                                    <div class="col-9">
+                                                        <input type="text"
+                                                            onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reserveDress','dress_rental_price'); "
+                                                            placeholder="Dress Rental Price"
+                                                            class="form-control shadow-sm gradient-border"
+                                                            id="dressRentPrice" required>
+                                                    </div>
+                                                </div>
+                                                <!-- Price End -->
+
+                                                <!-- Deposit Amount Start -->
+                                                <div class="row mt-1">
+                                                    <label for="depositAmount" class="col-3 col-form-label ">
+                                                        Deposit Amount : <span class="text-danger"> * </span>
+                                                    </label>
+                                                    <div class="col-9">
+                                                        <input type="text"
+                                                            onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reserveDress','deposit_amount');generatePreResevTotal();"
+                                                            placeholder="Deposit Amount ( Dress Rental Price * 30% )"
+                                                            class="form-control shadow-sm gradient-border"
+                                                            id="depositAmount" required>
+                                                    </div>
+                                                </div>
+                                                <!-- Deposit Amount End -->
+
+                                                <!-- Pre-Reservation Total Start -->
+                                                <div class="row mt-1">
+                                                    <label for="preResTotal" class="col-3 col-form-label ">
+                                                        Pre-Reservation Total : <span class="text-danger"> * </span>
+                                                    </label>
+                                                    <div class="col-9">
+                                                        <input type="text"
+                                                            onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reserveDress','pre_reservation_total' )"
+                                                            placeholder="Pre-Reservation Total"
+                                                            class="form-control shadow-sm gradient-border"
+                                                            id="preResTotal" required>
+                                                    </div>
+                                                </div>
+                                                <!-- Pre-Reservation Total End -->
+
+                                                <!-- Rental Start Date Start -->
+                                                <div class="row mt-1">
+                                                    <label for="rentStrtDate" class="col-3 col-form-label ">
+                                                        Rental Start Date : <span class="text-danger"> * </span>
+                                                    </label>
+                                                    <div class="col-9">
+                                                        <input type="date" onkeydown="return false;"
+                                                            onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'reserveDress', 'rental_start_date'); generateRentalEnd();"
+                                                            placeholder="Enter Rental Start Date"
+                                                            class="form-control shadow-sm gradient-border"
+                                                            id="rentStrtDate" required>
+                                                    </div>
+                                                </div>
+                                                <!-- Rental Start Date End -->
+
+                                                <!-- Rental End Date Start -->
+                                                <div class="row mt-1">
+                                                    <label for="rentEndDate" class="col-3 col-form-label ">
+                                                        Rental End Date : <span class="text-danger"> * </span>
+                                                    </label>
+                                                    <div class="col-9">
+                                                        <input type="date" onkeydown="return false;"
+                                                            onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'reserveDress', 'rental_end_date');"
+                                                            placeholder="Enter Rental End Date"
+                                                            class="form-control shadow-sm gradient-border"
+                                                            id="rentEndDate" required>
+                                                    </div>
+                                                </div>
+                                                <!-- Rental End Date End -->
+
+                                                <!-- Fitton Date Start -->
+                                                <div class="row mt-1">
+                                                    <label for="fittonDate" class="col-3 col-form-label ">
+                                                        Dress Fitton Date : <span class="text-danger"> * </span>
+                                                    </label>
+                                                    <div class="col-9">
+                                                        <input type="date" onkeydown="return false;"
+                                                            onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'reserveDress', 'fitton_date');  filterDresses();"
+                                                            placeholder="Enter Dress Fitton Date"
+                                                            class="form-control shadow-sm gradient-border"
+                                                            id="fittonDate" required>
+                                                    </div>
+                                                </div>
+                                                <!-- Fitton Date End -->
+
+                                                <!-- Rental Status Start -->
+                                                <div class="row mt-1  mb-4">
+                                                    <label for="rentalStatus" class="col-3 col-form-label">
+                                                        Rental Status : <span class="text-danger"> * </span>
+                                                    </label>
+                                                    <div class="col-9">
+                                                        <select id="rentalStatus"
+                                                            class="form-select shadow-sm gradient-border"
+                                                            onchange="selectSValidator(this,'','reserveDress','rental_status')"
+                                                            required>
+                                                            <option value="" selected disabled>Select Dress Rental
+                                                                Status</option>
+                                                            <option value="Pending">Pending</option>
+                                                            <option value="Pre-Reserved">Pre-Reserved</option>
+                                                            <option value="Fitton Done">Fitton Done</option>
+                                                            <option value="Dress Collected">Dress Collected</option>
+                                                            <option value="Not Collected">Not Collected</option>
+                                                            <option value="Late return">Late return</option>
+                                                            <option value="Dress Returned">Dress Returned</option>
+                                                            <option value="Completed">Completed</option>
+                                                            <option value="Cancelled">Cancelled</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- Rental Status End -->
+
+
+                                                <!-- Buttons Start -->
+                                                <div class="row justify-content-between mt-1">
+                                                    <div class="col-6">
+                                                        <button id="btnClearDressResv" type="button"
+                                                            onclick="innerDressForm.reset();"
+                                                            class="btn btn-cancel col-3">Clear</button>
+                                                    </div>
+                                                    <div class="col-6 text-end">
+                                                        <button id="btnEditDressResv" type="button"
+                                                            onclick="EditDressResvButton(); innerDressForm.reset(); "
+                                                            class="btn btn-edit col-3">Edit</button>
+                                                        <button id="btnAddDressResv" type="button"
+                                                            onclick="addDressResv()"
+                                                            class="btn btn-success col-3">Add</button>
+                                                    </div>
+                                                </div>
+                                                <!-- Buttons End -->
+
+                                                <!-- Inner form's table details Start -->
+                                                <div class="row mt-4">
+                                                    <!-- table start -->
+                                                    <table class="table" id="tableReservationDress">
+                                                        <thead class="table-header text-center">
+                                                            <tr>
+                                                                <th>ID</th> <!-- #,No,Index -->
+                                                                <th>Dress Code</th>
+                                                                <th>Dress Name</th>
+                                                                <th>Dress Rental Price</th>
+                                                                <th>Deposit Amount</th>
+                                                                <th>Pre-Res Total</th>
+                                                                <th>Rental Status</th>
+                                                                <th style="width:130px">Action</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody class="table-body text-start">
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td class="text-start">001</td>
+                                                                <td class="text-start">Lehenga</td>
+                                                                <td class="text-start">21000.00</td>
+                                                                <td class="text-start">21000.00</td>
+                                                                <td class="text-start">21000.00</td>
+                                                                <td>Status</td>
+                                                                <td> </td>
+
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- table end -->
+                                                </div>
+                                                <!-- Inner form's table details End -->
+                                            </div>
+                                        </div>
+                                        <!-- Inner form And table End -->
+                                        <!-- ####################################################################################### -->
+
+                                        <!--  Reservation Charge Start -->
+                                        <div class="row mt-3">
+                                            <label for="resCharge" class="col-2 col-form-label ">
+                                                Reservation Charge :<span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"
+                                                    onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reservation','reservation_charge'); generateNetTotal();"
+                                                    placeholder="Enter Reservation Charge"
+                                                    class="form-control shadow-sm gradient-border" id="resCharge"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!--  Reservation Charge End -->
+
+                                        <!--  Total Amount Start -->
+                                        <div class="row mt-1">
+                                            <label for="resTotalAmount" class="col-2 col-form-label ">
+                                                Total Amount :<span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"
+                                                    onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reservation','total_amount'); generateNetTotal();"
+                                                    placeholder="Enter Total Amount"
+                                                    class="form-control shadow-sm gradient-border" id="resTotalAmount"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!--  Total Amount End -->
+
+
+                                        <!--  Net-Total Amount Start -->
+                                        <div class="row mt-1">
+                                            <label for="resNetTotalAmount" class="col-2 col-form-label ">
+                                                Net-Total Amount :<span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"
+                                                    onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reservation','net_total')"
+                                                    placeholder="Enter Net-Total Amount"
+                                                    class="form-control shadow-sm gradient-border"
+                                                    id="resNetTotalAmount" required>
+                                            </div>
+                                        </div>
+                                        <!--  Net-Total Amount End -->
+
+
+                                        <!-- Reservation Status Start -->
+                                        <div class="row mt-1">
+                                            <label for="resStatus" class="col-2 col-form-label">
+                                                Reservation Status : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="resStatus" class="form-select shadow-sm gradient-border"
+                                                    onchange="selectDValidator(this,'','reservation','reservation_status_id')"
+                                                    required>
+                                                    <option value="Active">Active</option>
+                                                    <option value="in-Active">in-Active</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Reservation Status End -->
+
+
+                                        <!-- Note Start -->
+                                        <div class="row mt-3">
+                                            <label for="textNote" class="col-2 col-form-label ">
+                                                Note :
+                                            </label>
+                                            <div class="col-10">
+                                                <textarea placeholder="Enter Note"
+                                                    onkeyup="textValidator(this,'^.*$','reservation','note')" rows="1"
+                                                    id="textNote"
+                                                    class="form-control shadow-sm gradient-border"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Note End -->
+
+
+
+                                        <!-- Buttons Start -->
+                                        <div class="row justify-content-between mt-4">
+                                            <div class="col-6">
+                                                <button type="button"
+                                                    onclick="reservationForm.reset(); refreshReservationForm();  $('#tableResv').tab('show')"
+                                                    class="btn btn-back col-5">Back to Reservation
+                                                    Table</button>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <button id="btnClearReservation" type="button"
+                                                    onclick="reservationForm.reset(); refreshReservationForm();"
+                                                    class="btn btn-cancel col-3">Clear</button>
+                                                <button id="btnEditReservation" type="button"
+                                                    onclick="EditReservationButton(); reservationForm.reset(); $('#tableResv').tab('show')"
+                                                    class="btn btn-edit col-3">Edit</button>
+                                                <button id="btnSubmitReservation" type="submit"
+                                                    onclick="submitReservation()"
+                                                    class="btn btn-success col-3">Save</button>
+                                            </div>
+                                        </div>
+                                        <!-- Buttons End -->
+
+                                    </form>
+                                    <!-- form end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab form end -->
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+
+        <!-- customer form start -->
+        <div class="offcanvas offcanvas-bottom " tabindex="-1" id="offcanvasAddCustomer"
+            aria-labelledby="offcanvasBottomLabel" data-bs-backdrop="static" style="--bs-offcanvas-height: 65vh; width: 1400px;">
+            <div class="offcanvas-header mt-2" style="justify-content: flex-end; padding-right: 30px;">
+                <button type="button" class="btn-close col-1 text-end" data-bs-dismiss="offcanvas" aria-label="Close">
+                </button>
+            </div>
+            <div class="offcanvas-body ">
+                <!-- form start -->
+                <form id="customerForm" class="formBody" onsubmit="return false" style="border: solid 1px transparent;">
+                    <!-- Form Header Start -->
+                    <div class="row">
+                        <div class="col-6 pt-4">
+                            <h1>Customer Form</h1>
+                        </div>
+                        <div class="col-6 text-end">
+                            <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                        </div>
+                        <hr>
+                    </div>
+                    <!-- Form Header Start -->
+
+                    <!-- * required mark -->
+                    <div class="row">
+                        <div class="col-12 text-end">
+                            <span class="fw-bold"><span class="text-danger">
+                        </div>
+                    </div>
+
+
+                    <!-- Customer First Name Start-->
+                    <div class="row mt-1">
+                        <label for="custFName" class="col-2 col-form-label ">
+                            First Name : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <input type="text" placeholder="Enter First Name"
+                                onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','customer','first_name');"
+                                class="form-control shadow-sm gradient-border" id="custFName" required>
+                        </div>
+                    </div>
+                    <!-- Customer First Name End-->
+
+                    <!-- Customer Last Name Start-->
+                    <div class="row mt-1">
+                        <label for="custLName" class="col-2 col-form-label ">
+                            Last Name : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <input type="text" placeholder="Enter Last Name"
+                                onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','customer','last_name'); "
+                                class="form-control shadow-sm gradient-border" id="custLName" required>
+                        </div>
+                    </div>
+                    <!-- Customer Last Name End-->
+
+                    <!-- Email Id Start -->
+                    <div class="row mt-1">
+                        <label for="emailId" class="col-2 col-form-label ">
+                            Email ID : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <input type="email" placeholder="Enter Email Id"
+                                onkeyup="textValidator(this,'^[A-Za-z0-9\\-\\_]{6,20}[@][a-z]{5,10}[.][a-z]{2,3}$','customer','email')"
+                                class="form-control shadow-sm gradient-border" id="emailId" required>
+                        </div>
+                    </div>
+                    <!-- Email Id End -->
+
+                    <!-- Customer NIC Number Start-->
+                    <div class="row mt-1">
+                        <label for="customerNIC" class="col-2 col-form-label ">
+                            NIC Number : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <input type="text" placeholder="Enter NIC Number"
+                            onkeyup="textValidator(this,'^(([56789][0-9][01235678][0-9]{6}[VvXx])|([12][09][0-9]{2}[01235678][0-9]{7}))$','customer','nic'); "
+                                class="form-control shadow-sm gradient-border" id="customerNIC"
+                                required>
+                        </div>
+                    </div>
+                    <!-- Customer NIC Number End-->
+
+                    <!-- Address Start -->
+                    <div class="row mt-1">
+                        <label for="custAddress" class="col-2 col-form-label ">
+                            Address : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <input type="text" placeholder="Enter Address"
+                                onkeyup="textValidator(this,'^([A-Za-z0-9\\s\\/\\-]{1,20}[\\,][\\s])+([A-Z][a-z]{1,20}[.])$','customer','address')"
+                                class="form-control shadow-sm gradient-border" id="custAddress" required>
+                        </div>
+                    </div>
+                    <!-- Address End -->
+
+                    <!-- Phone Number Start -->
+                    <div class="row mt-1">
+                        <label for="custPhoneNumber" class="col-2 col-form-label ">
+                            Phone Number : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <input type="tel" placeholder="Enter Phone Number"
+                                onkeyup="textValidator(this,'^[0][7][01245678][0-9]{7}$','customer', 'phone')"
+                                class="form-control shadow-sm gradient-border" id="custPhoneNumber" required>
+                        </div>
+                    </div>
+                    <!-- Phone Number End -->
+
+                    <!-- Customer Status Start -->
+                    <div class="row mt-1" style="display: none;">
+                        <label for="custStatus" class="col-2 col-form-label">
+                            Customer Status : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <select id="custStatus" class="form-select shadow-sm gradient-border"
+                                onchange="selectDValidator(this,'','customer','customerstatus_id')" required>
+                                <option value="Active">Active</option>
+                                <option value="in-Active">in-Active</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Customer Status End -->
+
+
+                    <!-- Buttons Start -->
+                    <div class="row justify-content-between mt-4">
+                        <div class="col-6">
+                            <button id="btnClearCustomer" type="button"
+                                onclick="customerForm.reset(); refreshCustomerForm(); "
+                                class="btn btn-cancel col-3">Clear</button>
+                        </div>
+                        <div class="col-6 text-end">
+
+
+                            <button id="btnSubmitCustomer" type="submit"
+                                onclick="submitCustomer(); customerForm.reset();"
+                                class="btn btn-success col-3">Save</button>
+                        </div>
+                    </div>
+                    <!-- Buttons End -->
+
+                </form>
+                <!-- form end -->
+            </div>
+        </div>
+
+
+
+
+        <!-- ###################################################################################### -->
+        <!-- ################                    Print  table veiw               ################## -->
+        <!-- ###################################################################################### -->
+
+        <table class="table table-header " id="tableReservationPrint" style="display: none;">
+            <tr>
+                
+                <td >
+                    <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image" style="width:200px">
+                </td>
+                <td>
+                   
+                </td>
+                <td>
+                    <h1>Reservation Details</h1>
+                </td>
+                
+            </tr>
+            <tr>
+                <th>Reservation No :</th>
+                <td id="reservationNo"></td>
+                <th>Reservation Status :</th>
+                <td id="ReservationStatus"></td>
+                <th>Reserved Date :</th>
+                <td id="ReservedDate"></td>
+            </tr>
+            <tr>
+                <th>Customer Name :</th>
+                <td id="customerName"></td>
+                <th>Customer NIC :</th>
+                <td id="customerNIC"></td>
+                <th>Customer Phone :</th>
+                <td id="customerPhone"></td>
+            </tr>
+            <tr></tr>
+            <tr>                
+                <th colspan="6" class="table-header text-center">
+                    Reserved Dresses
+                </th>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <!-- table start -->
+                    <table class="table" id="tableReservationDressPrint">
+                        <thead class="table-header text-center">
+                            <tr>
+                                <th>ID</th> <!-- #,No,Index -->
+                                <th>Dress Code</th>
+                                <th>Dress Name</th>
+                                <th>Dress Rental Price</th>
+                                <th>Deposit Amount</th>
+                                <th>Pre-Res Total</th>
+                                <th>Rental Status</th>
+                            </tr>
+
+                        </thead>
+                        <tbody class="table-body text-start">
+
+                        </tbody>
+                    </table>
+                    <!-- table end -->
+                </td>
+
+            </tr>
+
+            <tr>
+                <th>Reservation Charge :</th>
+                <td id="reservationCharge"></td>
+                <th>Total Amount :</th>
+                <td id="totalAmount"></td>
+                <th>Net-Total :</th>
+                <td id="netTotal"></td>
+            </tr>
+        </table>
+
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+
+</head>
+
+<head>
+
+
+</head>
+
+<body>
+  <!-- Topnavbar -->
+  <nav th:replace="~{ Topnavbar :: topnavbarFragment }"></nav>
+
+  <div class="container mt-5">
+    <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+      <div class="card-body">
+        <!-- nav -->
+        <nav>
+          <div class="nav nav-pills nav-justified" style="display: none;">
+            <a href="#nav-table" id="tablDress" data-bs-toggle="tab" role="tab" class="nav-link  active">
+            </a>
+            <a href="#nav-designertable" id="tablDesignerView" data-bs-toggle="tab" role="tab" class="nav-link  active">Designer View
+            </a>
+
+          </div>
+        </nav>
+
+        <div class="tab-content">
+
+
+          <!-- tab table start -->
+          <div class="tab-pane show active" id="nav-table">
+            <div class="row col-12">
+              <div class="card text-center">
+                <div class="card-header">
+                  <h5 class="card-title" style="font-size: 40px; font-family:inter"><b>Add a New Reservation</b></h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text" style="font-size: 28px; font-family:inter">Easily add a new reservation by
+                    clicking the button below.</p>
+                  <a href="/reservation">
+                    <button style="width:20%; height:60px" class="btn buttonPrimary">Add
+                      Reservation</button>
+                  </a>
+                  
+
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+
+            </div>
+            <div class="row col-12 ">
+
+              <div class="card text-center">
+
+                <div class="row card-body" style="
+                display: flex;
+                justify-content: space-between;">
+                  <!-- Pending Purchase Request Start-->
+                  <div class="col-4 gradient-border shadow-sm" style="height:270px; margin: 20px;">
+                    <div class="col-12 row">
+                      <div class="col-8 pt-5">
+                        <p style="font-size: 40px; font-family:inter">
+                          Pending Purchase Request
+                        </p>
+                      </div>
+                      <div class="col-3">
+                        <p style="font-size: 85px;" id="pendingPurchaseRequest">11</p>
+                      </div>
+                    </div>
+                    <a href="/dresspurchreqpendingreport">
+                      <button type="button" class="btn btn-back col-2" style="width:90%; height:60px">
+                        Purchase Request Report
+                      </button>
+                    </a>
+                  </div>
+                  <!-- Pending Purchase Request End-->
+
+
+
+                  <!-- Dress Availability Start-->
+                  <div class="col-4 gradient-border shadow-sm" style="height:270px; margin: 20px;">
+                    <div class="col-12 row">
+                      <div class="col-12 pt-5">
+                        <p style="font-size: 40px; font-family:inter; height:120px">
+                          Availbility of Dresses
+                        </p>
+                      </div>
+                    </div>
+                    <a href="/dressreport">
+                      <button type="button" class="btn btn-back col-2" style="width:90%; height:60px">
+                        Dress Catalog Report
+                      </button>
+                    </a>
+                  </div>
+                  <!-- Dress Availability End-->
+
+
+
+                  <!-- Dress Availability Start-->
+                  <div class="col-3 gradient-border shadow-sm" style="height:270px; margin: 20px;">
+                    <div class="col-12 row">
+                      <div class="col-12 pt-5">
+                        <p style="font-size: 40px; font-family:inter; height:120px">
+                          Make a Payment
+                        </p>
+                      </div>
+                    </div>
+                    <a href="/payment">
+                      <button type="button" class="btn btn-back col-2" style="width:90%; height:60px">
+                        Pay Here
+                      </button>
+                    </a>
+                  </div>
+                  <!-- Dress Availability End-->
+
+                </div>
+              </div>
+
+
+
+              <div class="col-1"></div>
+
+
+            </div>
+          </div>
+          <!-- tab table end -->
+
+
+          <!-- tab table start -->
+          <div class="tab-pane show active" id="nav-designertable">
+            <div class="row mt-2">
+                <div class="mt-3">
+                    <!-- table tab start -->
+                    <div class="row  p-3">
+
+                        <div class="border-primary">
+                            <!-- table start -->
+                            <table class="table" id="tabledesignerview">
+                                <thead class="table-header text-center">
+                                    <tr>
+                                        <th>DPR ID</th> <!-- #,No,Index -->
+                                        <th>Designer</th>
+                                        <th>Dress Name</th>
+                                        <th>Required Date</th>
+                                        <th>Urgency Level</th>
+                                        <th style="width:180px">Purchase Request Status</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody class="table-body text-start">
+                                    <tr>
+                                        <td>1</td>
+                                        <td><img src="" alt=""></td>
+                                        <td class="text-start">Lehenga</td>
+                                        <td class="text-start">21000.00</td>
+                                        <td>21000.00</td>
+                                        <td> </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <!-- table end -->
+                        </div>
+
+                    </div>
+                    <!-- table tab End -->
+                </div>
+            </div>
+        </div>
+        <!-- tab table end -->
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+    <script>
+      dprequests = getServiceAjaxRequest("/pendingpurchaserequestslist");
+
+      pendingPurchaseRequest.innerText = dprequests.length;
+    </script>
+
+</body>
+
+</html>

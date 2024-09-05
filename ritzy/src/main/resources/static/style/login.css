@@ -1,0 +1,256 @@
+body {
+    background-image: url(../image/Background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 10px;
+}
+
+.buttonPrimary {
+    background: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B) border-box;
+    font-weight: bold;
+    color: black;
+}
+
+.card {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.card-body {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+.glass-morph-card {
+    border-radius: 15px;
+    border: 2px solid;
+    background: rgba(24, 22, 22, 0.50);
+    backdrop-filter: blur(15px);
+    border-image: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B);
+    border-style: solid;
+    border-image-slice: 1;
+    padding-right: 240px;
+    padding-left: 120px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
+.Logo_in_Login {
+
+    position: relative;
+    display: inline;
+}
+
+.Logo_in_Login::after {
+    content: '';
+    width: 2px;
+    height: 100px;
+    display: block;
+    background-color: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B);
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.custom-border {
+    border-left: 3px solid;
+    border-image: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B);
+    border-image-slice: 1;
+    width: 100%;
+    height: 100%;
+    transform-origin: 0 0;
+
+}
+
+.Login-heading-customization {
+    background: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: "Cormorant Upright";
+    font-style: normal;
+    font-size: 60px;
+    line-height: normal;
+    font-weight: 80;
+    align-self: center;
+    margin-bottom: 1px;
+}
+
+.input-feild {
+
+    width: 180%;
+    height: 30%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: rgba(241, 230, 149, 0.30);
+    box-shadow: -5px 8px 4px rgba(245.81, 239.15, 239.15, 0.25) inset;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 4px #93642A solid;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex
+}
+
+.input-feild::placeholder {
+    color: #BB9B57;
+    font-size: 20px;
+    font-family: Syne;
+    word-wrap: break-word;
+}
+
+.login-button {
+    background: linear-gradient(102deg, #93642A 0%, #BB9B57 22%, #BB9B57 37%, #F1E695 53%, #B49250 67%, #B49250 86%, #94652B 100%, #93642A 100%);
+    box-shadow: -5px 8px 4px rgba(245.81, 239.15, 239.15, 0.25) inset;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 4px #94763A solid;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    width: 250px;
+    height: 70px;
+    color: black;
+    font-family: Upright;
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 90%;
+    margin-top: 15px;
+}
+
+.login-button:hover {
+    background: linear-gradient(102deg, #93642A 0%, #BB9B57 22%, #BB9B57 37%, #F1E695 53%, #B49250 67%, #B49250 86%, #94652B 100%, #93642A 100%);
+    opacity: 100%;
+
+}
+
+.login-position {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 70px;
+    padding-right: 70px;
+    margin-left: 80px;
+}
+
+a {
+    color: #bb9b57;
+    font-size: 18px;
+    font-family: Syne;
+    font-weight: 400;
+    text-decoration: underline;
+    word-wrap: break-word;
+
+}
+
+a:hover {
+    color: #eed5a2;
+
+}
+
+
+element.style {
+    color: #cfcfd6;
+    font-size: 21px;
+    width: 95%;
+}
+.dropdown-toggle {
+    white-space: nowrap;
+}
+
+
+
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+img, svg {
+    vertical-align: middle;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+
+:host, :root {
+    --rem: 16;
+}
+
+div {
+    display: flex;
+    align-content:center;
+    justify-content: center;
+    /* unicode-bidi: isolate; */
+}
+
+form {
+    display: flex;
+    margin-top: 3em;
+    /* unicode-bidi: normal; */
+    flex-direction: column;
+    align-items: center;
+}
+
+.body-scrollbar-customization {
+    overflow-x: hidden;
+    /* Remove horizontal Scrolling */
+    direction: ltr;
+    /* direction of the content in menu is left to right */
+
+}
+
+.body-scrollbar-customization::-webkit-scrollbar {
+    width: 0.25rem;
+    right: 0;
+}
+
+.body-scrollbar-customization::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.body-scrollbar-customization::-webkit-scrollbar-track {
+    background-color: transparent;
+}

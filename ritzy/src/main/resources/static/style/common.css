@@ -1,0 +1,275 @@
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1620px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #20201F;
+    padding-top: 15px;
+}
+
+.background-defaultcolor{
+    background:linear-gradient(60deg,
+    #F1E695,
+    #BB9B57,
+    #BB9B57,
+    #BB9B57,
+    #BB9B57,
+    #F1E695,
+    #B49250,
+    #B49250,
+    #BB9B57,
+    #BB9B57,
+    #F1E695);
+    
+    
+}
+
+body {
+    background-image: url(../image/Background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 10px;
+}
+
+.buttonPrimary {
+    background: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B) border-box;
+    font-weight: bold;
+    color: black;
+}
+
+.gradient-Divider {
+    border: none;
+    height: 1.5px;
+    margin: 15px 0;
+    opacity: 15;
+    background: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #F1E695,
+            #B49250,
+            #B49250,
+            #94652B);
+}
+
+.offcanvas.offcanvas-end {
+    width: var(--bs-offcanvas-width);
+    --bs-offcanvas-width: 330px;
+}
+
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    background: #0C0B0A;
+}
+
+
+.nav {
+    --bs-nav-link-color: white;
+    --bs-nav-link-hover-color: rgb(209, 201, 191);
+}
+
+.nav-link {
+    --bs-nav-link-color: #FFFDE2;
+    opacity: 95%;
+}
+
+
+.offcanvas-body {
+    overflow-x: hidden;
+    /* Remove horizontal Scrolling */
+    direction: ltr;
+    /* direction of the content in menu is left to right */
+
+}
+
+.offcanvas-body::-webkit-scrollbar {
+    width: 0.25rem;
+    right: 0;
+}
+
+.offcanvas-body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.offcanvas-body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+.body-scrollbar-customization {
+    overflow-x: hidden;
+    /* Remove horizontal Scrolling */
+    direction: ltr;
+    /* direction of the content in menu is left to right */
+
+}
+
+.body-scrollbar-customization::-webkit-scrollbar {
+    width: 0.25rem;
+    right: 0;
+}
+
+.body-scrollbar-customization::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.body-scrollbar-customization::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.navbar-toggler {
+    color: var(--bs-navbar-color);
+    background-color: transparent;
+    /* border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color); */
+    border: 4px;
+    transition: var(--bs-navbar-toggler-transition);   
+    border-style: solid;    
+    border-radius: 5px;
+}
+
+.card {
+    /* --bs-card-bg: rgba(157, 155, 145, 0.311); */
+    --bs-card-bg: rgb(230, 220, 178);
+    padding-top: 60px;
+    padding-bottom: 60px;
+
+
+}
+
+.glass-morph-card {
+    border-radius: 15px;
+    border: 1px solid;
+    /* background:rgb(241, 230, 149),; */
+    background: rgba(24, 22, 22, 0.50);
+    backdrop-filter: blur(15px);
+    border-image: linear-gradient(60deg, #93642A,
+            #BB9B57,
+            #BB9B57,
+            #f1e695,
+            #B49250,
+            #B49250,
+            #94652B);
+    border-style: solid;
+    border-image-slice: 1;
+    margin-bottom: 50px;
+    min-height: 840px;
+}
+
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #e5cfa1;
+    border: 3.375px solid #B49250;
+    background: #0C0B0A;
+    box-shadow: -4.219px 6.75px 3.375px 0px rgba(246, 239, 239, 0.25) inset, 4.219px -5.906px 5.062px 0px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 2px 2px 2px 2px;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.nav-justified .nav-item,
+.nav-justified>.nav-link {
+    color: #e5cfa1be;
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    border-radius: 2px 2px 2px 2px;
+    border: 1.5px solid var(--l2, #B49250);
+    font-weight: 350;
+    font-size: 26px;
+}
+
+.nav-justified .nav-item,
+.nav-justified>.nav-link {
+    border-radius: 2px 2px 2px 2px;
+    border: 1.5px solid #B49250;
+    box-shadow: -4.219px 6.75px 3.375px 0px rgba(246, 239, 239, 0.25) inset, 4.219px -5.906px 5.062px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+
+.nav-justified .nav-item,
+.nav-justified>.nav-link {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+
+
+
+.title_div{
+    color: #20201F;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    font-weight: bold;
+  
+    padding:  10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: auto;
+    border-radius: 8px;
+    
+}
+
+/* this applies only to dress purchase request Module  */
+
+
+.offcanvas.offcanvas-bottom {
+   
+    --bs-offcanvas-height: 80vh;
+    width: 80%;
+    margin: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #fffde2;
+    
+    
+}
+
+/* loged in user account display button color  */
+.btn-secondary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #4d3e23;
+    --bs-btn-border-color: #4d3e23;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #4a443a;
+    --bs-btn-hover-border-color: #5d584f;
+    --bs-btn-focus-shadow-rgb: 130, 138, 145;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #69645a;
+    --bs-btn-active-border-color: #655f56;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #766d5e;
+    --bs-btn-disabled-border-color: #6d6558;
+}
+
+.primary-button {
+    background: linear-gradient(102deg, #93642A 0%, #BB9B57 22%, #BB9B57 37%, #F1E695 53%, #B49250 67%, #B49250 86%, #94652B 100%, #93642A 100%);
+    box-shadow: -5px 8px 4px rgba(245.81, 239.15, 239.15, 0.25) inset;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 4px #94763A solid;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    width: 250px;
+    height: 70px;
+    color: black;
+    font-family: Upright;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+}

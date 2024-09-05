@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+
+</head>
+
+<head>
+
+    <!-- link dressreturned js file -->
+    <script src="/Controllerjs/dressreturened.js"></script>
+
+
+
+</head>
+
+<body class="body-scrollbar-customization">
+
+    <!-- TOpnavbar -->
+    <nav th:replace="~{ topnavbar :: topnavbarFragment }"></nav>
+
+    <div class="container mt-5">
+        <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+            <div class="card-body">
+                <!-- nav -->
+                <nav>
+                    <div class="nav nav-pills nav-justified">
+                        <a href="#nav-table" id="tableDressReturned" data-bs-toggle="tab" role="tab"
+                            class="nav-link  active" onclick="refreshDressReturnedTable()">
+                            Table
+                        </a>
+                        <a href="#nav-form" id="dressRetForm" data-bs-toggle="tab" role="tab" class="nav-link">
+                            Form
+                        </a>
+
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+
+
+                    <!-- tab table start -->
+                    <div class="tab-pane show active" id="nav-table">
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">
+
+                                    <div class="border-primary">
+                                        <!-- table start -->
+                                        <table class="table" id="tableDressRet">
+                                            <thead class="table-header text-center">
+                                                <tr>
+                                                    <th style="width:50px">DC ID</th> <!-- #,No,Index -->
+                                                    <th style="width:120px">Reservation No</th>
+                                                    <th style="width:120px">Customer Name</th>
+                                                    <th style="width:120px">Customer Phone</th>
+                                                    <th style="width:800px">Reserved Dress</th>
+                                                    <th style="width:180px">Wedding Date</th>
+                                                    <th style="width:120px">Reservation Status</th>
+                                                    <th style="width:140px">Action</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="table-body text-center">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mushfa Mujeeb</td>
+                                                    <td>Lehenga</td>
+                                                    <td>Pending</td>
+                                                    <td></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab table end -->
+
+                    <!-- tab form start -->
+                    <div class="tab-pane" id="nav-form">
+                        <div class="m-3">
+                            <!-- form area start -->
+                            <div class="row mt-2">
+                                <div class="mt-3">
+                                    <!-- form start -->
+                                    <form id="DressRetForm" class="formBody" onsubmit="return false">
+                                        <!-- Form Header Start -->
+                                        <div class="row">
+                                            <div class="col-6 pt-4">
+                                                <h1>Dress Returned Form</h1>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- Form Header Start -->
+
+                                        <!-- * required mark -->
+                                        <div class="row">
+                                            <div class="col-12 text-end">
+                                                <span class="fw-bold"><span class="text-danger">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Customer Start-->
+                                        <div class="row mt-1">
+                                            <label for="textCustName" class="col-2 col-form-label ">
+                                                Customer Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" placeholder="Customer Name"
+                                                    onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','dressretperson','customer_id');"
+                                                    class="form-control shadow-sm gradient-border" id="textCustName"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Customer End-->
+
+                                        <!-- Reservation No Start-->
+                                        <div class="row mt-1">
+                                            <label for="textReservationNo" class="col-2 col-form-label ">
+                                                Reservation No : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" placeholder="Reservation No"
+                                                    onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','dressretperson','reservaton_no');"
+                                                    class="form-control shadow-sm gradient-border"
+                                                    id="textReservationNo" required>
+                                            </div>
+                                        </div>
+
+                                        <!-- Reservation No End-->
+
+                                        <!-- Dress Start-->
+                                        <!-- <div class="row mt-3 mb-4">
+                                            <label for="SelectDress" class="col-2 col-form-label ">
+                                                Dress Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="SelectDress" class="gradient-border shadow-sm form-control"
+                                                    onchange="selectDValidator(SelectDress,'','dressretperson','dress_id'); ">
+                                                    <option value="" disabled selected>Select Dress</option>
+                                                    <option value="">Ram</option>
+                                                </select>
+                                            </div>
+
+                                        </div> -->
+
+                                        <!-- Dress Name Start -->
+                                        <div class="row">
+                                            <label for="SelectDress" class="col-2 col-form-label ">
+                                                Dress Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+
+                                                <div id="SelectDress"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Dress Name End -->
+                                        <!-- Dress End-->
+
+                                        <!-- ####################################################################################### -->
+                                        <!-- inner display start -->
+                                        <div class="row"
+                                            style="display: flex; justify-content: flex-end; margin-right: 10px;">
+                                            <div class="col-2">
+
+                                            </div>
+                                            <div class="row col-10 glass-morph-innerform p-3 mt-4"
+                                                id="divDisplayDressDetails"
+                                                style="display:flex;flex-wrap: wrap;justify-content: center;">
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Inner display End -->
+                                        <!-- ####################################################################################### -->
+
+                                        <!-- Returned Date Start -->
+                                        <div class="row mt-4">
+                                            <label for="textReturnedDate" class="col-2 col-form-label ">
+                                                Dress Returned Date : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="date" onkeydown="return false" ;
+                                                    onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'rhdress', 'returned_date');"
+                                                    placeholder="Enter Returned Date"
+                                                    class="form-control shadow-sm gradient-border" id="textReturnedDate"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Returned Date End -->
+
+                                        <!-- ############################################################################################ -->
+                                        <!-- ############################################################################################ -->
+                                        <!-- ############################################################################################ -->
+                                        <!-- Returned By Start-->
+                                        <div class="row mt-1">
+                                            <label for="SelectReturnedBy" class="col-2 col-form-label ">
+                                                Returned By : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="SelectReturnedBy"
+                                                    class="gradient-border shadow-sm form-control"
+                                                    onchange="generateReturnedPersonDetails();">
+                                                    <option value="Select Returned By" disabled selected>Select
+                                                        Returned By</option>
+                                                    <option value="Customer">Customer</option>
+                                                    <option value="Existing Returned Person">Existing Returned Person
+                                                    </option>
+                                                    <option value="New Returned Person">New Returned Person</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <!-- Returned By End-->
+
+                                        <div id="divReturnedperson">
+                                            <!--  Returned Person Start -->
+                                            <div class="row mt-3">
+                                                <label for="textReturnedPerson" class="col-2 col-form-label ">
+                                                    Returned Person : <span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10 row" style="padding-right: 0px">
+                                                    <div class="col-10 pt-1">
+                                                        <select id="textReturnedPerson"
+                                                            class="gradient-border shadow-sm form-control"
+                                                            onchange="selectDValidator(this,'','rhdress','returned_person_detail_id');">
+                                                            <option value="" disabled selected>Select Returned Person
+                                                            </option>
+                                                            <option value="">Reezan</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="col-2 text-end p-0">
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" id="btnAddNewDRPerson"
+                                                            class="btn btn-back" data-bs-toggle="offcanvas"
+                                                            data-bs-target="#modalDRPerson"
+                                                            aria-controls="offcanvasBottom" style="width:100%">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                            Add New
+                                                        </button>
+
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        
+
+
+                                        <!-- Note Start -->
+                                        <div class="row mt-1">
+                                            <label for="textNote" class="col-2 col-form-label ">
+                                                Note :
+                                            </label>
+                                            <div class="col-10">
+                                                <textarea placeholder="Enter Note"
+                                                    onkeyup="textValidator(this,'^.*$','dressretperson','note')"
+                                                    rows="1" id="textNote"
+                                                    class="form-control shadow-sm gradient-border"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Note End -->
+
+
+
+                                        <!-- Buttons Start -->
+                                        <div class="row justify-content-between mt-4">
+                                            <div class="col-6">
+                                                <button type="button"
+                                                    onclick="DressRetForm.reset(); $('#tableDressReturned').tab('show')"
+                                                    class="btn btn-back col-6">Back to Dress Returned Details
+                                                    Table</button>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <button id="btnEditDRPerson" type="button"
+                                                    onclick="EditDRPButton(); DressRetForm.reset(); $('#tableDressReturned').tab('show')"
+                                                    class="btn btn-edit col-4">
+                                                    Edit Reservation
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <!-- Buttons End -->
+
+                                    </form>
+                                    <!-- form end -->
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab form end -->
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+        <!-- ############################################################################################ -->
+        <!-- ############################################################################################ -->
+        <!-- ############################################################################################ -->
+
+        <div class="offcanvas offcanvas-bottom " tabindex="-1" id="modalDRPerson" aria-labelledby="offcanvasBottomLabel"
+            data-bs-backdrop="static" style="--bs-offcanvas-height: 55vh; width: 1400px;">
+            <div class="offcanvas-header mt-2" style="justify-content: flex-end; padding-right: 30px;">
+                <button type="button" class="btn-close col-1 text-end" data-bs-dismiss="offcanvas" aria-label="Close">
+                </button>
+            </div>
+            <div class="offcanvas-body ">
+                <!-- form start -->
+                <!-- 404 line made on submit false because to stop form submission auto refresh  -->
+                <form id="DReturnedPersonForm" class="formBody" onsubmit="return false"
+                    style="border: solid 1px transparent;">
+                    <!-- Form Header Start -->
+                    <div class="row">
+                        <div class="col-6 pt-4">
+                            <h1 id="staticBackdropLabel">New Returned Person Detail Form</h1>
+                        </div>
+                        <div class="col-6 text-end">
+                            <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                        </div>
+
+                        <hr>
+                    </div>
+                    <!-- Form Header Start -->
+
+                    <!-- * required mark -->
+                    <div class="row">
+                        <div class="col-12 text-end">
+                            <span class="fw-bold"><span class="text-danger">
+                        </div>
+                    </div>
+
+
+                    <!-- Returned Person Name Start-->
+                    <div class="row mt-4" style="padding-right: 30px; padding-left: 30px">
+                        <label for="ReturnedPersonName" class="col-3 col-form-label ">
+                            Returned Person Name : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-9">
+                            <input type="text" placeholder="Enter Returned Person"
+                                onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','dressretpersonob','person_name');"
+                                class="form-control shadow-sm gradient-border" id="ReturnedPersonName" required>
+                        </div>
+                    </div>
+                    <!-- Returned Person Name End-->
+
+                    <!-- Returned Person NIC Start-->
+                    <div class="row mt-3" style="padding-right: 30px; padding-left: 30px">
+                        <label for="ReturnedPersonNIC" class="col-3 col-form-label ">
+                            Returned Person NIC : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-9">
+                            <input type="text" placeholder="Enter NIC Number"
+                                onkeyup="textValidator(this,'^(([56789][0-9][01235678][0-9]{6}[VvXx])|([12][09][0-9]{2}[01235678][0-9]{7}))$','dressretpersonob','person_nic'); "
+                                class="form-control shadow-sm gradient-border" id="ReturnedPersonNIC" required>
+                        </div>
+                    </div>
+                    <!-- Returned Perso NIC End-->
+
+                    <!-- Returned Person Phone Start-->
+                    <div class="row mt-3" style="padding-right: 30px; padding-left: 30px">
+                        <label for="ReturnedPersonPhone" class="col-3 col-form-label ">
+                            Returned Person Phone : <span class="text-danger"> *
+                            </span>
+                        </label>
+                        <div class="col-9">
+                            <input type="tel" placeholder="Enter Phone Number"
+                                onkeyup="textValidator(this,'^[0][7][01245678][0-9]{7}$','dressretpersonob', 'person_mobile')"
+                                class="form-control shadow-sm gradient-border" id="ReturnedPersonPhone" required>
+                        </div>
+                    </div>
+                    <!-- Returned Perso Phonen End-->
+
+                    <!-- Buttons Start -->
+                    <div class="row justify-content-between mt-1">
+                        <div class="col-12 text-end" style="padding-right: 40px; padding-bottom: 30px">
+                            <button id="btnAddNewRutPerson" type="button"
+                                onclick="submitDRPerson(); refreshDressReturnedPerson()"
+                                class="btn btn-success col-3">Add</button>
+                        </div>
+                    </div>
+                    <!-- Buttons End -->
+
+                    <!-- ############################################################################################ -->
+                    <!-- ############################################################################################ -->
+                    <!-- ############################################################################################ -->
+
+
+
+
+                </form>
+                <!-- form end -->
+            </div>
+        </div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:text="${title}">Ritzy - Home</title>
+
+  <link rel="shortcut icon" href="/image/Fevicon.svg" type="image/x-icon" />
+
+  <!-- Boostrap css -->
+  <link rel="stylesheet" href="/bootstrap-5.2.3/bootstrap-5.2.3-dist/css/bootstrap.min.css" />
+
+  <!-- Boostrap js -->
+  <script src="/bootstrap-5.2.3/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="/fontawesome-free-6.4.2/fontawesome-free-6.4.2-web/css/all.css" />
+
+
+  <!-- link login style css file -->
+  <link rel="stylesheet" href="/style/login.css" />
+
+
+
+
+
+</head>
+
+
+<body class="body-scrollbar-customization">
+  <!-- Main content container  -->
+  <div class="container-fluid">
+    <!-- Centered row with vertical alignment -->
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <!-- column for card -->
+      <div class="col-10 text-center">
+        <!-- card with glass morph effect -->
+        <div class="card glass-morph-card">
+          <div class="card-body container ">
+            <div class="row text-center">
+              <div class="col-1"></div>
+              <div class="col-5 login-position">
+                <img class="Logo_in_Login text-end" id="offcanvasHeaderImage" src="\image\Logo_original_nobg.svg"
+                  width="120%" alt="Brand Logo" style="overflow-clip-margin: initial; overflow: visible;" />
+              </div>
+
+              <div class="col-5">
+                <div class="custom-border">
+                  <div class="text-center login-position mt-4" style="display: flex; flex-direction: column;">
+
+                    <h1 class="Login-heading-customization">Log In</h1>
+
+                    <form class="mt-4" action="/login" method="post">
+                      <!-- user name start -->
+                      <input class="input-feild" name="username" type="text" id="userName"
+                        placeholder="Enter User Name" />
+                      <!-- user name end  -->
+
+                      <!-- password feild start -->
+                      <input class="input-feild" name="password" type="password" id="password"
+                        placeholder="Enter Password" />
+                      <!-- password feild end -->
+
+                      <!-- <div class="text-center mt-1">
+                        <a href="#">Forgot Your Password?</a>
+                      </div> -->
+                      <div class="text-center mt-1 text-danger" th:if="${param.error}" style="color: #fe0d0d;font-weight: bolder;font-size: 20px;">
+                        Invalid Username Password!
+                      </div>
+
+                      <button type="submit" class="login-button mt-4">
+                        Log In
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

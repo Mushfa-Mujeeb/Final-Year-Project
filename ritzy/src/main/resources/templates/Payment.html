@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+
+</head>
+
+<head>
+
+    <!-- link dressreturned js file -->
+    <script src="/Controllerjs/payment.js"></script>
+
+
+
+</head>
+
+<body class="body-scrollbar-customization">
+
+    <!-- TOpnavbar -->
+    <nav th:replace="~{ topnavbar :: topnavbarFragment }"></nav>
+
+    <div class="container mt-5">
+        <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+            <div class="card-body">
+                <!-- nav -->
+                <nav>
+                    <div class="nav nav-pills nav-justified">
+                        <a href="#nav-table1" id="tablePayment" data-bs-toggle="tab" role="tab" class="nav-link  active"
+                            onclick="refreshReservationInvoiceForm()">
+                            Payment Table
+                        </a>
+                        <a href="#nav-table2" id="tableReservation" data-bs-toggle="tab" role="tab" class="nav-link "
+                            onclick="refreshReservationInvoiceForm()">
+                            Reservation Table
+                        </a>
+                        <a href="#nav-form" id="invoiceForm" data-bs-toggle="tab" role="tab" class="nav-link"
+                            onclick="refreshReservationInvoiceForm()">
+                            Invoice
+                        </a>
+
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+
+
+                    <!-- tab Payment table start -->
+                    <div class="tab-pane show active" id="nav-table1">
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">
+
+                                    <div class="border-primary">
+                                        <!-- table start -->
+                                        <table class="table" id="TablePayment">
+                                            <thead class="table-header text-center">
+                                                <tr>
+                                                    <th style="width:50px">Invoice ID</th> <!-- #,No,Index -->
+                                                    <th style="width:120px">Invoice No</th>
+                                                    <th style="width:120px">Reservation No</th>
+                                                    <th style="width:120px">Customer Name</th>
+                                                    <th style="width:120px">Paid Amount</th>
+                                                    <th style="width:180px">Payment Date</th>
+                                                    <th style="width:120px">Payment Type</th>
+                                                    <th style="width:140px">Action</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="table-body text-center">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mushfa Mujeeb</td>
+                                                    <td>Lehenga</td>
+                                                    <td>Pending</td>
+                                                    <td></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab Payment table end -->
+
+                    <!-- tab Reservation table start -->
+                    <div class="tab-pane" id="nav-table2">
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">
+
+                                    <div class="border-primary">
+                                        <!-- table start -->
+                                        <table class="table" id="tablePaymentReservation">
+                                            <thead class="table-header text-center">
+                                                <tr>
+                                                    <th style="width:50px">Reservation ID</th> <!-- #,No,Index -->
+                                                    <th style="width:80px">Reservation No</th>
+                                                    <th style="width:80px">Customer Name</th>
+                                                    <th style="width:80px">Customer Phone</th>
+                                                    <th style="width:800px">Reserved Dress</th>
+                                                    <th style="width:350px">Wedding Date</th>
+                                                    <th style="width:120px">Reservation Status</th>
+                                                    <th style="width:600px">Action</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="table-body text-center">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mushfa Mujeeb</td>
+                                                    <td>Lehenga</td>
+                                                    <td>Pending</td>
+                                                    <td></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab Reservation table end -->
+
+                    <!-- tab form start -->
+                    <div class="tab-pane" id="nav-form">
+                        <div class="m-3">
+                            <!-- form area start -->
+                            <div class="row mt-2">
+                                <div class="mt-3">
+                                    <!-- form start -->
+                                    <form id="InvoiceForm" class="formBody" onsubmit="return false">
+                                        <!-- Form Header Start -->
+                                        <div class="row">
+                                            <div class="col-6 pt-4">
+                                                <h1>Invoice</h1>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- Form Header Start -->
+
+                                        <!-- * required mark -->
+                                        <div class="row">
+                                            <div class="col-12 text-end">
+                                                <span class="fw-bold"><span class="text-danger">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Customer Start-->
+                                        <div class="row mt-1">
+                                            <label for="textCustName" class="col-2 col-form-label ">
+                                                Customer Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" placeholder="Customer Name"
+                                                    onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','payreservation','customer_id');"
+                                                    class="form-control shadow-sm gradient-border" id="textCustName"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Customer End-->
+
+                                        <!-- Reservation No Start-->
+                                        <div class="row mt-1">
+                                            <label for="textReservationNo" class="col-2 col-form-label ">
+                                                Reservation No : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" placeholder="Reservation No"
+                                                    onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','payreservation','reservaton_no');"
+                                                    class="form-control shadow-sm gradient-border"
+                                                    id="textReservationNo" required>
+                                            </div>
+                                        </div>
+                                        <!-- Reservation No End-->
+
+                                        <!-- Payment Type Start-->
+                                        <div class="row mt-1 mb-3">
+                                            <label for="SelectPaymentType" class="col-2 col-form-label ">
+                                                Payment Type : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="SelectPaymentType"
+                                                    class="gradient-border shadow-sm form-control"
+                                                    onchange="selectDValidator(this,'','invoice','invoice_type_id');"
+                                                    required>
+                                                    <option value="Select Payment Type" disabled selected>Select
+                                                        Payment Type</option>
+                                                    <option value="">Reservation Invoice</option>
+                                                    <option value="">Deposit Invoice
+                                                    </option>
+                                                    <option value="">Rental Invoice</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <!-- Payment Type End-->
+
+                                        <!-- ############################################################################################ -->
+                                        <!-- ###############################  Reservation Invoice      ################################## -->
+                                        <!-- ############################################################################################ -->
+
+                                        <div id="DivReservationInvoice" style="display: none;">
+                                            <!-- Dress Name Start -->
+                                            <div class="row" style="margin-right:10px">
+                                                <label for="SelectDress" class="col-2 col-form-label " style="margin-right:27px">
+                                                    Dress Name : <span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="row col-10 glass-morph-innerform p-3 mt-1"
+                                                    id="divReservationDisplayDressDetails"
+                                                    style="display:flex;flex-wrap: wrap;justify-content: center; width:1160px;">
+
+                                                </div>
+                                            </div>
+                                            <!-- Dress Name End -->
+                                            <!-- Dress End-->
+
+                                            
+                                            <!-- Reservation Payment Date Start -->
+                                            <div class="row mt-4">
+                                                <label for="textResPayDate" class="col-2 col-form-label ">
+                                                    Dress Reservation Payment Date : <span class="text-danger"> *
+                                                    </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <input type="date" onkeydown="return false" ;
+                                                        onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'rhdress', 'returned_date');"
+                                                        placeholder="Enter Reservation Payment Date"
+                                                        class="form-control shadow-sm gradient-border"
+                                                        id="textResPayDate" required>
+                                                </div>
+                                            </div>
+                                            <!-- Reservation Payment Date End -->
+
+                                            <!-- Payment Method Start-->
+                                            <div class="row">
+                                                <label for="SelectResPaymentMethod" class="col-2 col-form-label ">
+                                                    Payment Method : <span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <select id="SelectResPaymentMethod"
+                                                        class="gradient-border shadow-sm form-control" onchange="selectDValidator(this,'','invoice','payment_method_id');">
+                                                        <option value="Select Payment Method" disabled selected>Select
+                                                            Payment Method</option>
+                                                        <option value="">CASH</option>
+                                                        <option value="">CARD.
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <!-- Payment Method End-->
+
+                                            <!--  Reservation Charge Start -->
+                                            <div class="row mt-3">
+                                                <label for="resCharge" class="col-2 col-form-label ">
+                                                    Total (Reservation Charge) :<span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <input type="text"
+                                                        onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reservation','reservation_charge');"
+                                                        placeholder="Enter Total Charge"
+                                                        class="form-control shadow-sm gradient-border" id="resCharge"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <!--  Reservation Charge End -->
+
+                                        </div>
+
+                                        <!-- ############################################################################################ -->
+                                        <!-- ############################################################################################ -->
+                                        <!-- ############################################################################################ -->
+
+
+
+                                        <!-- ############################################################################################ -->
+                                        <!-- ###############################      Deposit Invoice      ################################## -->
+                                        <!-- ############################################################################################ -->
+
+                                        <div id="DivDepositInvoice" style="display: none;">
+                                            <!-- Dress Name Start -->
+                                            <div class="row">
+                                                <label for="SelectDressforDepositpay" class="col-2 col-form-label " style="margin-right:27px">
+                                                    Dress Name : <span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="row col-10 glass-morph-innerform p-3 mt-1"
+                                                    id="divDisplayDressDetailsforDeposit"
+                                                    style="display:flex;flex-wrap: wrap;justify-content: center; width:1160px;">
+
+                                                </div>                                               
+                                            </div>
+                                            <!-- Dress Name End -->
+                                            <!-- Dress End-->
+
+
+                                            <!-- Inner display End -->
+                                            <!-- ####################################################################################### -->
+
+                                            <!-- Deposit Payment Date Start -->
+                                            <div class="row mt-4">
+                                                <label for="textDepositPayDate" class="col-2 col-form-label ">
+                                                    Deposit Payment Date : <span class="text-danger"> *
+                                                    </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <input type="date" onkeydown="return false" ;
+                                                        onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'rhdress', 'returned_date');"
+                                                        placeholder="Enter Deposit Payment Date"
+                                                        class="form-control shadow-sm gradient-border"
+                                                        id="textDepositPayDate" required>
+                                                </div>
+                                            </div>
+                                            <!-- Deposit Payment Date End -->
+
+                                            <!-- Payment Method Start-->
+                                            <div class="row mt-1">
+                                                <label for="SelectDepositPaymentMethod" class="col-2 col-form-label ">
+                                                    Payment Method : <span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <select id="SelectDepositPaymentMethod"
+                                                        class="gradient-border shadow-sm form-control">
+                                                        <option value="Select Payment Method" disabled selected>Select
+                                                            Payment Method</option>
+                                                        <option value="">Customer</option>
+                                                        <option value="">Existing Returned Person
+                                                        </option>
+                                                        <option value="">New Returned Person</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <!-- Payment Method End-->
+
+                                            <!--  Deposit AmountStart -->
+                                            <div class="row mt-3">
+                                                <label for="depositAmount" class="col-2 col-form-label ">
+                                                    Total (Deposit Amount) :<span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <input type="text"
+                                                        onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reservation','reservation_charge'); generateNetTotal();"
+                                                        placeholder="Enter Total Charge"
+                                                        class="form-control shadow-sm gradient-border"
+                                                        id="depositAmount" required>
+                                                </div>
+                                            </div>
+                                            <!--  Deposit Amount End -->
+
+
+
+                                        </div>
+
+                                        <!-- ############################################################################################ -->
+                                        <!-- ############################################################################################ -->
+                                        <!-- ############################################################################################ -->
+
+
+                                        <!-- ############################################################################################ -->
+                                        <!-- ###############################      Rental Invoice       ################################## -->
+                                        <!-- ############################################################################################ -->
+
+                                        <div id="DivRentalInvoice" style="display: none;">
+                                            <!-- Dress Name Start -->
+                                            <div class="row">
+                                                <label for="SelectDressforRentalPay" class="col-2 col-form-label " style="margin-right:27px">
+                                                    Dress Name : <span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="row col-10 glass-morph-innerform p-3 mt-1"
+                                                    id="divDisplayDressDetailsforRental"
+                                                    style="display:flex;flex-wrap: wrap;justify-content: center; width:1160px;">
+
+                                                </div>    
+                                            </div>
+                                            <!-- Dress Name End -->
+                                            <!-- Dress End-->
+
+                                            
+                                            <!-- Rental Payment Date Start -->
+                                            <div class="row mt-4">
+                                                <label for="textRentalPayDate" class="col-2 col-form-label ">
+                                                    Rental Payment Date : <span class="text-danger"> *
+                                                    </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <input type="date" onkeydown="return false" ;
+                                                        onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'rhdress', 'returned_date');"
+                                                        placeholder="Enter Rental Payment Date"
+                                                        class="form-control shadow-sm gradient-border"
+                                                        id="textRentalPayDate" required>
+                                                </div>
+                                            </div>
+                                            <!-- Rental Payment Date End -->
+
+                                            <!-- Payment Method Start-->
+                                            <div class="row mt-1">
+                                                <label for="SelectRentalPaymentMethod" class="col-2 col-form-label ">
+                                                    Payment Method : <span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <select id="SelectRentalPaymentMethod"
+                                                        class="gradient-border shadow-sm form-control">
+                                                        <option value="Select Payment Method" disabled selected>Select
+                                                            Payment Method</option>
+                                                        <option value="">Customer</option>
+                                                        <option value="">Existing Returned Person
+                                                        </option>
+                                                        <option value="">New Returned Person</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <!-- Payment Method End-->
+
+                                            <!--  Dress Rental Price Start -->
+                                            <div class="row mt-3">
+                                                <label for="totalDressRental" class="col-2 col-form-label ">
+                                                    Total (Dress Rental Price) :<span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <input type="text"
+                                                        onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reservation','reservation_charge'); generateNetTotal();"
+                                                        placeholder="Enter Total Price"
+                                                        class="form-control shadow-sm gradient-border"
+                                                        id="totalDressRental" required>
+                                                </div>
+                                            </div>
+                                            <!--  Dress Rental Price End -->
+
+
+                                            <!--  Refundable Amount Start -->
+                                            <div class="row mt-1">
+                                                <label for="refundableAmount" class="col-2 col-form-label ">
+                                                    Refundable Amount :<span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <input type="text"
+                                                        onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reservation','reservation_charge'); generateNetTotal();"
+                                                        placeholder="Enter Total Price"
+                                                        class="form-control shadow-sm gradient-border"
+                                                        id="refundableAmount" required>
+                                                </div>
+                                            </div>
+                                            <!--  Refundable Amount End -->
+
+                                            <!--  Net - Total Start -->
+                                            <div class="row mt-2">
+                                                <label for="rentalNetTotal" class="col-2 col-form-label ">
+                                                    Net - Total :<span class="text-danger"> * </span>
+                                                </label>
+                                                <div class="col-10">
+                                                    <input type="text"
+                                                        onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','reservation','reservation_charge'); generateNetTotal();"
+                                                        placeholder="Enter Net - Total"
+                                                        class="form-control shadow-sm gradient-border"
+                                                        id="rentalNetTotal" required>
+                                                </div>
+                                            </div>
+                                            <!--  Net - Total End -->
+
+
+                                        </div>
+
+                                        <!-- ############################################################################################ -->
+                                        <!-- ############################################################################################ -->
+                                        <!-- ############################################################################################ -->
+
+                                        <!--  Paid Amount Start -->
+                                        <div class="row mt-1">
+                                            <label for="txtpaidAmount" class="col-2 col-form-label ">
+                                                Paid Amount :<span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"
+                                                    placeholder="Enter Total Price" onchange="calculateResBalanceAmount(); calculateDepositBalanceAmount(); calculateRenatlBalanceAmount();"
+                                                    class="form-control shadow-sm gradient-border" id="txtpaidAmount"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!--  Paid Amount End -->
+
+                                        <!--  Balance Amount Start -->
+                                        <div class="row mt-1">
+                                            <label for="txtbalanceAmount" class="col-2 col-form-label ">
+                                                Balance Amount :<span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"
+                                                    placeholder="Enter Total Price"
+                                                    class="form-control shadow-sm gradient-border" id="txtbalanceAmount"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!--  Balance Amount End -->
+
+
+                                        <!-- Note Start -->
+                                        <div class="row mt-1">
+                                            <label for="textNote" class="col-2 col-form-label ">
+                                                Note :
+                                            </label>
+                                            <div class="col-10">
+                                                <textarea placeholder="Enter Note"
+                                                    onkeyup="textValidator(this,'^.*$','dressretperson','note')"
+                                                    rows="1" id="textNote"
+                                                    class="form-control shadow-sm gradient-border"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Note End -->
+
+
+
+                                        <!-- Buttons Start -->
+                                        <div class="row justify-content-between mt-4">
+                                            <div class="col-6">
+                                                <button type="button"
+                                                    onclick="InvoiceForm.reset(); $('#tablePayment').tab('show')"
+                                                    class="btn btn-back col-6">Back to Payment Table</button>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <button id="btnPaymentButton" type="button"
+                                                    onclick="SubmitPaymentButton(); InvoiceForm.reset(); $('#tablePayment').tab('show')"
+                                                    class="btn btn-success col-4">
+                                                    Save Payment
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <!-- Buttons End -->
+
+                                    </form>
+                                    <!-- form end -->
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab form end -->
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+        <!-- ############################################################################################ -->
+        <!-- ####################################    print Invoice   #################################### -->
+        <!-- ############################################################################################ -->
+
+
+        <table class="table table-header " id="tablePaymentPrint" style="display: none;">
+            <tr>
+                
+                <td >
+                    <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image" style="width:200px">
+                </td>
+                <td>
+                   
+                </td>
+                <td>
+                    <h1>Invoice</h1>
+                </td>
+                
+            </tr>
+            <tr>
+                <th>Invoice No :</th>
+                <td id="invoiceNo"></td>
+                <th>Payment Date :</th>
+                <td id="PaymentDate"></td>
+            </tr>
+            <tr>
+                <th>Reservation Type :</th>
+                <td id="reservationType"></td>
+                <th>Total Amount :</th>
+                <td id="totalAmount"></td>
+            </tr>
+            <tr></tr>
+           
+            <tr>                
+                <th>Paid Amount :</th>
+                <td id="paidAmount"></td>
+                <th>Balance Amount :</th>
+                <td id="balanceAmount"></td>
+            </tr>
+        </table>
+
+
+</body>
+
+</html>

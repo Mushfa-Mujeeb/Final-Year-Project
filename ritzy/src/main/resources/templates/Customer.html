@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+
+</head>
+
+<head>
+
+    <!-- link customer js file -->
+    <script src="/Controllerjs/customer.js"></script>
+
+
+
+</head>
+
+<body class="body-scrollbar-customization">
+
+    <!-- TOpnavbar -->
+    <nav th:replace="~{ topnavbar :: topnavbarFragment }"></nav>
+
+    <div class="container mt-5">
+        <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+            <div class="card-body">
+                <!-- nav -->
+                <nav>
+                    <div class="nav nav-pills nav-justified">
+                        <a href="#nav-table" id="tableCust" data-bs-toggle="tab" role="tab"
+                            class="nav-link  active">
+                            Table
+                        </a>
+                        <a href="#nav-form" id="custForm" data-bs-toggle="tab" role="tab" class="nav-link">
+                            Form
+                        </a>
+
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+
+
+                    <!-- tab table start -->
+                    <div class="tab-pane show active" id="nav-table">
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">
+
+                                    <div class="border-primary">
+                                        <!-- table start -->
+                                        <table class="table" id="tableCustomer">
+                                            <thead class="table-header text-center">
+                                                <tr>
+                                                    <th>Customer ID</th> <!-- #,No,Index -->
+                                                    <th>Customer Name</th>
+                                                    <th>Mail Address</th>
+                                                    <th>Address</th>
+                                                    <th>Phone Number</th>                                                    
+                                                    <th>Customer Status</th>                                                    
+                                                    <th>Action</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="table-body text-center">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mushfa Mujeeb</td>
+                                                    <td>mushfa@gmail.com</td>
+                                                    <td>Colombo</td>
+                                                    <td>0777521845</td>
+                                                    <td>20-05-2023</td>
+                                                    <td></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab table end -->
+
+                    <!-- tab form start -->
+                    <div class="tab-pane" id="nav-form">
+                        <div class="m-3">
+                            <!-- form area start -->
+                            <div class="row mt-2">
+                                <div class="mt-3">
+                                    <!-- form start -->
+                                    <form id="customerForm" class="formBody" onsubmit="return false">
+                                        <!-- Form Header Start -->
+                                        <div class="row">
+                                            <div class="col-6 pt-4">
+                                                <h1>Customer Form</h1>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- Form Header Start -->
+
+                                        <!-- * required mark -->
+                                        <div class="row">
+                                            <div class="col-12 text-end">
+                                                <span class="fw-bold"><span class="text-danger">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Customer First Name Start-->
+                                        <div class="row mt-1">
+                                            <label for="custFName" class="col-2 col-form-label ">
+                                                First Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" placeholder="Enter First Name"
+                                                    onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','customer','first_name');"
+                                                    class="form-control shadow-sm gradient-border" id="custFName"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Customer First Name End-->
+
+                                        <!-- Customer Last Name Start-->
+                                        <div class="row mt-1">
+                                            <label for="custLName" class="col-2 col-form-label ">
+                                                Last Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" placeholder="Enter Last Name"
+                                                onkeyup="textValidator(this,'^[A-Z][a-z]{2,30}$','customer','last_name'); "
+                                                    class="form-control shadow-sm gradient-border" id="custLName"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Customer Last Name End-->
+
+                                        <!-- Email Id Start -->
+                                        <div class="row mt-1">
+                                            <label for="emailId" class="col-2 col-form-label ">
+                                                Email ID : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="email" placeholder="Enter Email Id"
+                                                onkeyup="textValidator(this,'^[A-Za-z0-9\\-\\_]{6,20}[@][a-z]{5,10}[.][a-z]{2,3}$','customer','email')"
+                                                    class="form-control shadow-sm gradient-border" id="emailId"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Email Id End -->
+
+                                        <!-- Customer NIC Number Start-->
+                                        <div class="row mt-1">
+                                            <label for="customerNIC" class="col-2 col-form-label ">
+                                                NIC Number : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" placeholder="Enter NIC Number"
+                                                onkeyup="textValidator(this,'^(([56789][0-9][01235678][0-9]{6}[VvXx])|([12][09][0-9]{2}[01235678][0-9]{7}))$','customer','nic'); "
+                                                    class="form-control shadow-sm gradient-border" id="customerNIC"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Customer NIC Number End-->
+
+                                        <!-- Address Start -->
+                                        <div class="row mt-1">
+                                            <label for="custAddress" class="col-2 col-form-label ">
+                                                Address : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text" placeholder="Enter Address"
+                                                onkeyup="textValidator(this,'^([A-Za-z0-9\\s\\/\\-]{1,20}[\\,][\\s])+([A-Z][a-z]{1,20}[.])$','customer','address')"
+                                                    class="form-control shadow-sm gradient-border" id="custAddress"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Address End -->
+
+                                        <!-- Phone Number Start -->
+                                        <div class="row mt-1">
+                                            <label for="custPhoneNumber" class="col-2 col-form-label ">
+                                                Phone Number : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="tel" placeholder="Enter Phone Number"
+                                                onkeyup="textValidator(this,'^[0][7][01245678][0-9]{7}$','customer', 'phone')"
+                                                    class="form-control shadow-sm gradient-border" id="custPhoneNumber"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Phone Number End -->
+
+                                        <!-- Customer Status Start -->
+                                        <div class="row mt-1">
+                                            <label for="custStatus" class="col-2 col-form-label">
+                                                Customer Status : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">                                                
+                                                <select id="custStatus" class="form-select shadow-sm gradient-border" onchange="selectDValidator(this,'','customer','customerstatus_id')" required>
+                                                    <option value="Active">Active</option>
+                                                    <option value="in-Active">in-Active</option>                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Customer Status End -->
+
+                                        <!-- Note Start -->
+                                        <div class="row mt-3">
+                                            <label for="textNote" class="col-2 col-form-label ">
+                                                Note :
+                                            </label>
+                                            <div class="col-10">
+                                                <textarea placeholder="Enter Note"
+                                                    onkeyup="textValidator(this,'^.*$','dress','note')" rows="1"
+                                                    id="textNote"
+                                                    class="form-control shadow-sm gradient-border"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Note End -->
+
+                                        <!-- Buttons Start -->
+                                        <div class="row justify-content-between mt-4">
+                                            <div class="col-6">
+                                                <button type="button" onclick="customerForm.reset(); refreshCustomerForm();  $('#tableCust').tab('show')" class="btn btn-back col-5">Back to Customer
+                                                    Table</button>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <button id="btnClearCustomer" type="button" onclick="customerForm.reset(); refreshCustomerForm(); " class="btn btn-cancel col-3">Clear</button>
+                                                <button id="btnEditCustomer" type="button" onclick="EditCustomerButton(); customerForm.reset(); $('#tableCust').tab('show')" class="btn btn-edit col-3">Edit</button>
+                                                <button id="btnSubmitCustomer" type="submit" onclick="submitCustomer()" class="btn btn-success col-3">Save</button>
+                                            </div>
+                                        </div>
+                                        <!-- Buttons End -->
+
+                                    </form>
+                                    <!-- form end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab form end -->
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+</body>
+
+</html>

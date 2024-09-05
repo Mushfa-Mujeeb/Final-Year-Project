@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{ commonHtmlHead :: headFragment }">
+
+</head>
+
+<head>
+
+    <!-- link dress js file -->
+    <script src="\Controllerjs\dresspurchasereq.js"></script>
+
+
+
+</head>
+
+<body class="body-scrollbar-customization">
+
+    <!-- Topnavbar -->
+    <nav th:replace="~{ topnavbar :: topnavbarFragment }"></nav>
+
+    <div class="container mt-5">
+        <div class="card glass-morph-card p-3" style="margin-top: 150px;">
+            <div class="card-body">
+                <!-- nav -->
+                <nav>
+                    <div class="nav nav-pills nav-justified">
+                        <a href="#nav-table" id="tablDressPReq" data-bs-toggle="tab" role="tab"
+                            class="nav-link  active">Table
+                        </a>
+                        <a href="#nav-form" id="dressPReqForm" data-bs-toggle="tab" role="tab" class="nav-link">Form
+                        </a>
+
+                    </div>
+                </nav>
+
+                <div class="tab-content">
+
+
+                    <!-- tab table start -->
+                    <div class="tab-pane show active" id="nav-table">
+                        <div class="row mt-2">
+                            <div class="mt-3">
+                                <!-- table tab start -->
+                                <div class="row  p-3">
+
+                                    <div class="border-primary">
+                                        <!-- table start -->
+                                        <table class="table" id="tableDressPReq">
+                                            <thead class="table-header text-center">
+                                                <tr>
+                                                    <th>DPR ID</th> <!-- #,No,Index -->
+                                                    <th>Designer</th>
+                                                    <th>Dress Name</th>
+                                                    <th>Required Date</th>
+                                                    <th>Urgency Level</th>
+                                                    <th style="width:180px">Purchase Request Status</th>
+                                                    <th style="width:290px">Action</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="table-body text-start">
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td><img src="" alt=""></td>
+                                                    <td class="text-start">Lehenga</td>
+                                                    <td class="text-start">21000.00</td>
+                                                    <td>21000.00</td>
+                                                    <td> </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+
+                                </div>
+                                <!-- table tab End -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab table end -->
+
+                    <!-- tab form start -->
+                    <div class="tab-pane" id="nav-form">
+                        <div class="m-3">
+                            <!-- form area start -->
+                            <div class="row mt-2">
+                                <div class="mt-3">
+                                    <!-- form start -->
+                                    <form id="DressPReqForm" class="formBody" onsubmit="return false">
+                                        <!-- Form Header Start -->
+                                        <div class="row">
+                                            <div class="col-6 pt-4">
+                                                <h1>Dress Purchase Request Form</h1>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- Form Header Start -->
+
+                                        <!-- * required mark -->
+                                        <div class="row">
+                                            <div class="col-12 text-end">
+                                                <span class="fw-bold"><span class="text-danger">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Designer Start-->
+                                        <div class="row mt-3">
+                                            <label for="SelectDesigner" class="col-2 col-form-label ">
+                                                Designer : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="SelectDesigner"
+                                                    class="gradient-border shadow-sm form-control"
+                                                    onchange="selectDValidator(this,'','dprequest','designer_id'); ">
+                                                    <option value="" disabled selected>Select Designer</option>
+                                                    <option value="">Sri Lankan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Designer End-->
+
+                                        <!-- Dress Purchase Request Type Start -->
+                                        <div class="row mt-3">
+                                            <label for="dressPReqType" class="col-2 col-form-label ">
+                                                Purchase Request Type : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="dressPReqType"
+                                                    class="gradient-border shadow-sm form-control"
+                                                    onchange="selectDValidator(this,'','dprequest','purchase_request_type_id'); generateDressNamePR();">
+                                                    <option value="" disabled selected>Select Dress Purchase Request
+                                                        Type</option>
+                                                    <option value="">Bridal Gown</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Dress Purchase Request Type End -->
+
+                                        <!-- Dress Dress Name Start -->
+                                        <div class="row mt-3">
+                                            <label for="dressNamePR" class="col-2 col-form-label ">
+                                                Dress Name : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10 row" style="padding-right: 0px">
+                                                <div class="col-10 pt-1">
+                                                    <select id="dressNamePR"
+                                                        class="gradient-border shadow-sm form-control"
+                                                        onchange="selectDValidator(this,'','dprequest','dress_id');">
+                                                        <option value="" disabled selected>Select Dress Name</option>
+                                                        <option value="">Bridal Gown</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-2 text-end p-0">
+                                                    <!-- Button trigger modal --> 
+                                                    <button type="button" id="btnAddNewDressPR" class="btn btn-back"
+                                                        data-bs-toggle="offcanvas" data-bs-target="#modalDressAdd"
+                                                        aria-controls="offcanvasBottom" style="width:100%"
+                                                        onclick="refreshDressForm();">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                        Add New Dress
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Dress Dress Name End -->
+
+
+
+                                        <!--  Quantity Start -->
+                                        <div class="row mt-3">
+                                            <label for="dressQuantity" class="col-2 col-form-label ">
+                                                Quantity : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"
+                                                    onkeyup="textValidator(this,'^[1]{1}$','dprequest','quantity')"
+                                                    placeholder="Enter Quantity"
+                                                    class="form-control shadow-sm gradient-border" id="dressQuantity"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!--  Quantity End -->
+
+                                        <!--  Allocated Budget Start -->
+                                        <div class="row mt-1">
+                                            <label for="allocBudget" class="col-2 col-form-label ">
+                                                Allocated Budget : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"
+                                                    onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','dprequest','budget_allocated')"
+                                                    placeholder="Enter Allocated Budget"
+                                                    class="form-control shadow-sm gradient-border" id="allocBudget"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!--  Allocated Budget End -->
+
+
+                                        <!--  Actual Budget Start -->
+                                        <div class="row mt-1">
+                                            <label for="actualBudget" class="col-2 col-form-label ">
+                                                Actual Budget :
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="text"
+                                                    onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','dprequest','actual_budget')"
+                                                    placeholder="Enter Actual Budget"
+                                                    class="form-control shadow-sm gradient-border" id="actualBudget">
+                                            </div>
+                                        </div>
+                                        <!--  Actual Budget End -->
+
+                                        <!-- Required Date Start -->
+                                        <div class="row mt-1">
+                                            <label for="requiredDate" class="col-2 col-form-label ">
+                                                Dress Required Date : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <input type="date" onkeydown="return false" ;
+                                                    onchange="dateFeildValidator(this,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'dprequest', 'required_date');"
+                                                    placeholder="Enter Required Date"
+                                                    class="form-control shadow-sm gradient-border" id="requiredDate"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <!-- Required Date End -->
+
+
+                                        <!-- Urgency Level Start -->
+                                        <div class="row mt-1">
+                                            <label for="urgencyLevel" class="col-2 col-form-label ">
+                                                Urgency Level : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="urgencyLevel" class="gradient-border shadow-sm form-control"
+                                                    onchange="selectDValidator(this,'','dprequest','urgency_level_id');">
+                                                    <option value="" disabled selected>Select Urgency Level</option>
+                                                    <option value="">1</option>
+                                                    <option value="">2</option>
+                                                    <option value="">3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Urgency Level End -->
+
+
+                                        <!-- Status of the Purchase Request Start -->
+                                        <div class="row mt-3">
+                                            <label for="PRequestStatus" class="col-2 col-form-label ">
+                                                Request Status : <span class="text-danger"> * </span>
+                                            </label>
+                                            <div class="col-10">
+                                                <select id="PRequestStatus"
+                                                    class="gradient-border shadow-sm form-control"
+                                                    onchange="selectDValidator(this,'','dprequest','purchase_request_status_id');">
+                                                    <option value="" disabled selected>Select Request Status
+                                                    </option>
+                                                    <option value="">Available</option>
+                                                    <option value="">Not Available - Rented</option>
+                                                    <option value="">Reserved</option>
+                                                    <option value="">Under Maintenance</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- Status of the Purchase Request End -->
+
+
+
+                                        <!-- Note Start -->
+                                        <div class="row mt-3">
+                                            <label for="textNote" class="col-2 col-form-label ">
+                                                Note :
+                                            </label>
+                                            <div class="col-10">
+                                                <textarea placeholder="Enter Note"
+                                                    onkeyup="textValidator(this,'^.*$','dprequest','note')" rows="1"
+                                                    id="textNote"
+                                                    class="form-control shadow-sm gradient-border"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Note End -->
+
+                                        <!-- Buttons Start -->
+                                        <div class="row justify-content-between mt-4">
+                                            <div class="col-6">
+                                                <button type="button"
+                                                    onclick=" DressPReqForm.reset(); refreshDressPReqForm(); $('#tablDressPReq').tab('show')"
+                                                    class="btn btn-back col-5">Back to Purchase Request Table</button>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <button id="btnClearDressPReq" type="button"
+                                                    onclick="DressPReqForm.reset(); refreshDressPReqForm();"
+                                                    class="btn btn-cancel col-3">Clear</button>
+                                                <button id="btnEditDressPReq" type="button"
+                                                    onclick="DressPReqForm.reset(); editDressPReq();"
+                                                    class="btn btn-edit col-3">Edit</button>
+                                                <button id="btnSubmitDressPReq" type="submit"
+                                                    onclick="DressPReqForm.reset(); buttonDressPRSumbit(); "
+                                                    class="btn btn-success col-3">Save</button>
+                                            </div>
+                                        </div>
+                                        <!-- Buttons End -->
+
+
+
+
+
+
+                                    </form>
+                                    <!-- form end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab form end -->
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="offcanvas offcanvas-bottom " tabindex="-1" id="modalDressAdd" aria-labelledby="offcanvasBottomLabel"
+            data-bs-backdrop="static" style="width: 1400px;">
+            <div class="offcanvas-header mt-2" style="justify-content: flex-end; padding-right: 30px;">
+                <button type="button" class="btn-close col-1 text-end" data-bs-dismiss="offcanvas" aria-label="Close">
+                </button>
+            </div>
+            <div class="offcanvas-body ">
+                <!-- form start -->
+                <!-- 207 line made on submit false because to stop form submission auto refresh  -->
+                <form id="DressForm" class="formBody" onsubmit="return false" style="border: solid 1px transparent;">
+                    <!-- Form Header Start -->
+                    <div class="row">
+                        <div class="col-6 pt-4">
+                            <h1 id="staticBackdropLabel">Dress Catalog Form</h1>
+                        </div>
+                        <div class="col-6 text-end">
+                            <img src="/image/Logo_NowhiteBG.svg" alt="Logo" class="Logo-image">
+                        </div>
+
+                        <hr>
+                    </div>
+                    <!-- Form Header Start -->
+
+                    <!-- * required mark -->
+                    <div class="row">
+                        <div class="col-12 text-end">
+                            <span class="fw-bold"><span class="text-danger">
+                        </div>
+                    </div>
+
+
+                    <!-- Dress Style Start-->
+                    <div class="row mt-3">
+                        <label for="dressStyle" class="col-2 col-form-label ">
+                            Style : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <select id="dressStyle" class="gradient-border shadow-sm form-control"
+                                onchange="selectDValidator(this,'','dress','style_id'); categoryAndTypeFilterByStyle();  generateDressName()">
+                                <option value="" disabled selected>
+                                    Select
+                                    Dress
+                                    Style</option>
+                                <option value="">Sri Lankan</option>
+                                <option value="">Indian</option>
+                                <option value="">Western</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Dress Style End-->
+
+                    <!-- Dress Category Start-->
+                    <div class="row mt-3">
+                        <label for="dressCategory" class="col-2 col-form-label ">
+                            Category : <span class="text-danger"> *
+                            </span>
+                        </label>
+                        <div class="col-10">
+                            <select id="dressCategory" class="gradient-border shadow-sm form-control"
+                                onchange="selectDValidator(this,'','dress','category_id');  generateDressName()">
+                                <option value="" disabled selected>
+                                    Select
+                                    Dress
+                                    Category</option>
+                                <option value="">Bridala Gown</option>
+                                <option value="">Bridal Frock</option>
+                                <option value="">Lehenga</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Dress Category End-->
+
+
+                    <!-- Dress Type Start -->
+                    <div class="row mt-3">
+                        <label for="dressType" class="col-2 col-form-label ">
+                            Dress Type : <span class="text-danger"> *
+                            </span>
+                        </label>
+                        <div class="col-10">
+                            <select id="dressType" class="gradient-border shadow-sm form-control"
+                                onchange="selectDValidator(this,'','dress','dress_type_id'); generateDressName()">
+                                <option value="" disabled selected>
+                                    Select
+                                    Dress Type
+                                </option>
+                                <option value="">Bridala Gown</option>
+                                <option value="">Bridal Frock</option>
+                                <option value="">Lehenga</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Dress Type End -->
+
+
+                    <!-- Dress Size Start -->
+                    <div class="row mt-3">
+                        <label for="dressSize" class="col-2 col-form-label ">
+                            Size : <span class="text-danger"> * </span>
+                        </label>
+                        <div class="col-10">
+                            <select id="dressSize" class="gradient-border shadow-sm form-control"
+                                onchange="selectDValidator(this,'','dress','sizes_id'); generateDressName()">
+                                <option value="" disabled selected>
+                                    Select
+                                    Dress Size
+                                </option>
+                                <option value="">S</option>
+                                <option value="">M</option>
+                                <option value="">L</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Dress Size End -->
+
+                    <!-- Name Start -->
+                    <div class="row mt-3">
+                        <label for="dressName" class="col-2 col-form-label ">
+                            Dress Name : <span class="text-danger"> *
+                            </span>
+                        </label>
+                        <div class="col-10">
+                            <input type="text" onkeyup="textValidator(this,'','dress','dress_name')"
+                                placeholder="Enter Dress Name" class="form-control shadow-sm gradient-border"
+                                id="dressName" required disabled>
+                        </div>
+                    </div>
+                    <!-- Name End -->
+
+
+
+
+                    <!-- Price Start -->
+                    <div class="row mt-1">
+                        <label for="dressPrice" class="col-2 col-form-label ">
+                            Dress Rental Price : <span class="text-danger">
+                                *
+                            </span>
+                        </label>
+                        <div class="col-10">
+                            <input type="text"
+                                onkeyup="textValidator(this,'^(([1-9]{1}[0-9]{0,5})||([1-9]{1}[0-9]{0,5}[.][0-9]{2}))$','dress','price')"
+                                placeholder="Enter Dress Rental Price" class="form-control shadow-sm gradient-border"
+                                id="dressPrice" required>
+                        </div>
+                    </div>
+                    <!-- Price End -->
+
+                    <!-- Condition of the Dress Start -->
+                    <div class="row mt-1">
+                        <label for="dressCondition" class="col-2 col-form-label ">
+                            Dress Condition : <span class="text-danger">
+                                *
+                            </span>
+                        </label>
+                        <div class="col-10">
+                            <select id="dressCondition" class="gradient-border shadow-sm form-control"
+                                onchange="selectDValidator(this,'','dress','dress_condition_id');">
+                                <option value="" disabled selected>
+                                    Select
+                                    Dress
+                                    Condition</option>
+                                <option value="">New Arraivals</option>
+                                <option value="">Rented Few Times
+                                </option>
+                                <option value="">Damaged/Needs Attention
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Condition of the Dress End -->
+
+
+                    <!-- Availability of the Dress Start -->
+                    <div class="row mt-3">
+                        <label for="dressAvailability" class="col-2 col-form-label ">
+                            Dress Availability : <span class="text-danger">
+                                *
+                            </span>
+                        </label>
+                        <div class="col-10">
+                            <select id="dressAvailability" class="gradient-border shadow-sm form-control"
+                                onchange="selectDValidator(this,'','dress','dressavailability_id');">
+                                <option value="" disabled selected>
+                                    Select
+                                    Dress
+                                    Availability</option>
+                                <option value="">Available</option>
+                                <option value="">Not Available - Rented
+                                </option>
+                                <option value="">Reserved</option>
+                                <option value="">Under Maintenance
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Availability of the Dress End -->
+
+                    
+
+
+                    <!-- Buttons Start -->
+                    <div class="row justify-content-between mt-4">
+                        <div class="col-6">
+
+                        </div>
+                        <div class="col-6 text-end">
+
+                            <button id="btnSubmitDress" type="submit" onclick="buttonDressSumbit();  DressForm.reset();"
+                                class="btn btn-success col-3">Save</button>
+                        </div>
+                    </div>
+                    <!-- Buttons End -->
+
+                </form>
+                <!-- form end -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
